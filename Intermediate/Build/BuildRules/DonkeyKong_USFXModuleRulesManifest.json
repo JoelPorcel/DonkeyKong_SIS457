@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\joelp\\OneDrive\\Documentos\\Unreal Projects\\DonkeyKong_USFX\\Source\\DonkeyKong_USFX\\DonkeyKong_USFX.Build.cs",
+		"C:\\Users\\joelp\\OneDrive\\Documentos\\Unreal Projects\\DonkeyKong_USFX\\Source\\DonkeyKong_USFX.Target.cs",
+		"C:\\Users\\joelp\\OneDrive\\Documentos\\Unreal Projects\\DonkeyKong_USFX\\Source\\DonkeyKong_USFXEditor.Target.cs"
+	],
+	"EngineVersion": "4.27.2"
+}

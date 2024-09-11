@@ -1,0 +1,3 @@
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Development\DonkeyKong_USFX\Definitions.DonkeyKong_USFX.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\Barril.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\Barril.generated.h

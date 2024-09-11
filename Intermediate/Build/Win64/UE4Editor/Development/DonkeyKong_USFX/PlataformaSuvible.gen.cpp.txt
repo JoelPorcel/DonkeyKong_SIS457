@@ -1,0 +1,7 @@
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Development\DonkeyKong_USFX\Definitions.DonkeyKong_USFX.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX/PlataformaSuvible.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\Plataforma.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\Plataforma.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\PlataformaSuvible.generated.h

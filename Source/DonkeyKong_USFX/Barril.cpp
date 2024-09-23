@@ -55,8 +55,8 @@ void ABarril::BeginPlay()
 void ABarril::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 	eje = GetActorLocation();
+	if (eje.Z <= 320.f) Destroy();
 	eje.X = 1280.0f;
 	inicial += DeltaTime;
 	if (eje.Z <= 910) incremento = 0.4;
@@ -92,6 +92,7 @@ void ABarril::Tick(float DeltaTime)
 	//ubicacionActual.X = 1280.0f;
 	//BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
 }
+
 
 //void ABarril::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
 //{

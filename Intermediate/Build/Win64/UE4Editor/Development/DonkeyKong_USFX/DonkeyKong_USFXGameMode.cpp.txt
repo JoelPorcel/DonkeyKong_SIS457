@@ -1,0 +1,27 @@
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Development\DonkeyKong_USFX\Definitions.DonkeyKong_USFX.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\DonkeyKong_USFXGameMode.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\DonkeyKong_USFXGameMode.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\Plataforma.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\Plataforma.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\PlataformaMovible.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\PlataformaMovible.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\PlataformaSuvible.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\PlataformaSuvible.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\Barril.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\Barril.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\BarrilSaltador.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\BarrilSaltador.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\Mono.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\Mono.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Source\DonkeyKong_USFX\DonkeyKong_USFXCharacter.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/CharacterMovementReplication.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CharacterMovementReplication.generated.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
+C:\Users\joelp\OneDrive\Documentos\Unreal Projects\DonkeyKong_USFX\Intermediate\Build\Win64\UE4Editor\Inc\DonkeyKong_USFX\DonkeyKong_USFXCharacter.generated.h

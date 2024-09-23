@@ -6,6 +6,7 @@
 #include "PlataformaSuvible.h"
 #include "Barril.h"
 #include "BarrilSaltador.h"
+#include "Mono.h"
 #include "DonkeyKong_USFXCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -26,39 +27,40 @@ void ADonkeyKong_USFXGameMode::BeginPlay()
 	Rotacion = FRotator(0.0f, 0.0f, 2.0f);
 	Spawn = FVector(1280.0f, 1900.0f, 2940.0f);
 	random = FMath::RandRange(0, 3);
+	enemigosCant = FMath::RandRange(3, 5); //para enemigos
 	signo = 1.0f;
 	tiempo = 0.0f;
 	constant_z = 8.3f;
 	for (int i = 0; i < 6; i++) {
 		//plataformas
+		enemigo = Posicion;
 		ID = Plataformas.Num();
 		desicion = FMath::RandRange(1, 2);
 		componentes = FMath::RandRange(3, 13);
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("desicion: %d"), desicion));
-		for (int y = componentes; y >= 1; y--) {
+		for (int t = componentes; t >= 1; t--) {
 			ID = Plataformas.Num();
 			movimiento = FMath::RandRange(3, 5);
-			if (desicion == 1 && y != 1) {
-				if (y == movimiento || y + 1 == movimiento || y == movimiento + 1) {
+			if (desicion == 1 && t != 1) {
+				if (t == movimiento || t + 1 == movimiento || t == movimiento + 1) {
 					Posicion += FVector(0.0f, -290.f * signo, constant_z);
 					Plataformas.Add(ID, GetWorld()->SpawnActor<APlataformaSuvible>(APlataformaSuvible::StaticClass(), Posicion, Rotacion));
 				}
-				else if (y != movimiento) {
+				else if (t != movimiento) {
 					Posicion += FVector(0.0f, -290.f * signo, constant_z);
 					Plataformas.Add(ID, GetWorld()->SpawnActor<APlataforma>(APlataforma::StaticClass(), Posicion, Rotacion));
 				}
 			}
 			else {
-				if (y == movimiento) {
+				if (t == movimiento) {
 					Posicion += FVector(0.0f, -290.f * signo, constant_z - constant_z);
 					Plataformas.Add(ID, GetWorld()->SpawnActor<APlataformaSuvible>(APlataformaSuvible::StaticClass(), Posicion, FRotator::ZeroRotator));
 				}
-				else if (y != movimiento) {
+				else if (t != movimiento) {
 					Posicion += FVector(0.0f, -290.f * signo, constant_z - constant_z);
 					Plataformas.Add(ID, GetWorld()->SpawnActor<APlataforma>(APlataforma::StaticClass(), Posicion, FRotator::ZeroRotator));
 				}
 			}
-
 		}
 		if (i == random) {
 			Aparicion = Posicion;
@@ -73,9 +75,16 @@ void ADonkeyKong_USFXGameMode::BeginPlay()
 		signo *= -1.0f;
 		Posicion += FVector(0.0f, -275 * signo, 400.f);
 		Rotacion.Roll *= -1;
+		enemigo_ = Posicion;
+		Pu = enemigo;
+		control = FMath::RandRange(1, 2);
+		if ((control == 1 && Enemigos.Num() < 6) || Enemigos.Num() < 2 && i<2) {
+			Pu.Z = FMath::RandRange(enemigo_.Z, enemigo.Z);
+			Pu.Y = FMath::RandRange(enemigo_.Y, enemigo.Y);
+			Enemigos.Add(GetWorld()->SpawnActor<AMono>(AMono::StaticClass(), Pu, FRotator::ZeroRotator));
+		}
 	}
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Cantidad del contenedor: %d"), Plataformas.Num()));
-
 }
 
 void ADonkeyKong_USFXGameMode::Tick(float DeltaTime)

@@ -7,6 +7,7 @@
 #include "DonkeyKong_USFXCharacter.generated.h"
 
 class AProyectil;
+class ABarrilSaltador;
 
 UCLASS(config=Game)
 class ADonkeyKong_USFXCharacter : public ACharacter
@@ -39,6 +40,10 @@ class ADonkeyKong_USFXCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere)
 	FVector posicionActual;
 
+	//objeto proyectil
+	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
+	TSubclassOf<AProyectil> ProjectileClass;
+
 protected:
 
 	/** Called for side to side input */
@@ -65,9 +70,5 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
-	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
-	TSubclassOf<AProyectil> EsferaClass;
-
-	void InitializeEsferaClass();
 	void SpawnEsfera();
 };

@@ -65,9 +65,9 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXCharacter() {}
 #endif
 		static const UE4CodeGen_Private::FStructPropertyParams NewProp_posicionActual;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_EsferaClass_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ProjectileClass_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FClassPropertyParams NewProp_EsferaClass;
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_ProjectileClass;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -143,12 +143,14 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXCharacter() {}
 #endif
 	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_posicionActual = { "posicionActual", nullptr, (EPropertyFlags)0x0040000000020001, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADonkeyKong_USFXCharacter, posicionActual), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_posicionActual_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_posicionActual_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_EsferaClass_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_ProjectileClass_MetaData[] = {
 		{ "Category", "Spawning" },
+		{ "Comment", "//objeto proyectil\n" },
 		{ "ModuleRelativePath", "DonkeyKong_USFXCharacter.h" },
+		{ "ToolTip", "objeto proyectil" },
 	};
 #endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_EsferaClass = { "EsferaClass", nullptr, (EPropertyFlags)0x0014000000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADonkeyKong_USFXCharacter, EsferaClass), Z_Construct_UClass_AProyectil_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_EsferaClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_EsferaClass_MetaData)) };
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_ProjectileClass = { "ProjectileClass", nullptr, (EPropertyFlags)0x0044000000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADonkeyKong_USFXCharacter, ProjectileClass), Z_Construct_UClass_AProyectil_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_ProjectileClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_ProjectileClass_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_SideViewCameraComponent,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_CameraBoom,
@@ -157,7 +159,7 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_rightmin,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_rightmax,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_posicionActual,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_EsferaClass,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_ProjectileClass,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ADonkeyKong_USFXCharacter>::IsAbstract,
@@ -186,7 +188,7 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ADonkeyKong_USFXCharacter, 982374501);
+	IMPLEMENT_CLASS(ADonkeyKong_USFXCharacter, 1849063896);
 	template<> DONKEYKONG_USFX_API UClass* StaticClass<ADonkeyKong_USFXCharacter>()
 	{
 		return ADonkeyKong_USFXCharacter::StaticClass();

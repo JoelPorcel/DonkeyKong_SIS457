@@ -19,10 +19,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class UStaticMeshComponent* BarrilMesh;
 
@@ -54,7 +50,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MaxYLimit;
 
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 	//limites de movimiento
 	FVector ubicacionActual;
 	FVector velocidadActual;
+
+	void Initialize(const FVector& Direction);
 };

@@ -51,7 +51,6 @@ public:
 	float segundo = 10.5;
 	float incremento = 0;
 
-
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//float MinYLimit;
 

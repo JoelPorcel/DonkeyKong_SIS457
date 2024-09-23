@@ -79,7 +79,7 @@ void EmptyLinkFunctionForGeneratedCodeBarrilSaltador() {}
 		{ "ModuleRelativePath", "BarrilSaltador.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMesh = { "BarrilMesh", nullptr, (EPropertyFlags)0x00100000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, BarrilMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMesh_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMesh = { "BarrilMesh", nullptr, (EPropertyFlags)0x00200800000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, BarrilMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMesh_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilColision_MetaData[] = {
 		{ "Category", "BarrilSaltador" },
@@ -89,7 +89,7 @@ void EmptyLinkFunctionForGeneratedCodeBarrilSaltador() {}
 		{ "ToolTip", "Malla de colision" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilColision = { "BarrilColision", nullptr, (EPropertyFlags)0x00100000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, BarrilColision), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilColision_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilColision_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilColision = { "BarrilColision", nullptr, (EPropertyFlags)0x00200800000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, BarrilColision), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilColision_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilColision_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMovement_MetaData[] = {
 		{ "Category", "BarrilSaltador" },
@@ -99,28 +99,28 @@ void EmptyLinkFunctionForGeneratedCodeBarrilSaltador() {}
 		{ "ToolTip", "Componente de velocidad" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMovement = { "BarrilMovement", nullptr, (EPropertyFlags)0x00100000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, BarrilMovement), Z_Construct_UClass_UProjectileMovementComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMovement_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMovement_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMovement = { "BarrilMovement", nullptr, (EPropertyFlags)0x00200800000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, BarrilMovement), Z_Construct_UClass_UProjectileMovementComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMovement_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMovement_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_SpeedIncrease_MetaData[] = {
 		{ "Category", "BarrilSaltador" },
 		{ "ModuleRelativePath", "BarrilSaltador.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_SpeedIncrease = { "SpeedIncrease", nullptr, (EPropertyFlags)0x0010000000020005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, SpeedIncrease), METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_SpeedIncrease_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_SpeedIncrease_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_SpeedIncrease = { "SpeedIncrease", nullptr, (EPropertyFlags)0x0020080000020005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, SpeedIncrease), METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_SpeedIncrease_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_SpeedIncrease_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MinYLimit_MetaData[] = {
 		{ "Category", "BarrilSaltador" },
 		{ "ModuleRelativePath", "BarrilSaltador.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MinYLimit = { "MinYLimit", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, MinYLimit), METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MinYLimit_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MinYLimit_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MinYLimit = { "MinYLimit", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, MinYLimit), METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MinYLimit_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MinYLimit_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MaxYLimit_MetaData[] = {
 		{ "Category", "BarrilSaltador" },
 		{ "ModuleRelativePath", "BarrilSaltador.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MaxYLimit = { "MaxYLimit", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, MaxYLimit), METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MaxYLimit_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MaxYLimit_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MaxYLimit = { "MaxYLimit", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarrilSaltador, MaxYLimit), METADATA_PARAMS(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MaxYLimit_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_MaxYLimit_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ABarrilSaltador_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilMesh,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABarrilSaltador_Statics::NewProp_BarrilColision,
@@ -156,7 +156,7 @@ void EmptyLinkFunctionForGeneratedCodeBarrilSaltador() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ABarrilSaltador, 2094900512);
+	IMPLEMENT_CLASS(ABarrilSaltador, 264418272);
 	template<> DONKEYKONG_USFX_API UClass* StaticClass<ABarrilSaltador>()
 	{
 		return ABarrilSaltador::StaticClass();

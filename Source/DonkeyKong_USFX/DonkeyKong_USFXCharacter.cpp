@@ -7,6 +7,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Proyectil.h"
+#include "BarrilSaltador.h"
 #include "Engine/World.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -49,8 +50,6 @@ ADonkeyKong_USFXCharacter::ADonkeyKong_USFXCharacter()
 	leftmax = 1700.0f;
 	rightmin = -1300.0f;
 	rightmax = -1700.0f;
-
-	InitializeEsferaClass();
 }
 
 void ADonkeyKong_USFXCharacter::Tick(float DeltaTime)
@@ -99,76 +98,35 @@ void ADonkeyKong_USFXCharacter::TouchStopped(const ETouchIndex::Type FingerIndex
 
 void ADonkeyKong_USFXCharacter::SpawnEsfera()
 {
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Tecla Z presionada"));
-    }
+	ProjectileClass = AProyectil::StaticClass();
+	if (ProjectileClass)
+	{
+		// Obtener la ubicación y rotación del jugador
+		FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100; // Ajustar la distancia de spawn
+		FRotator SpawnRotation = GetActorRotation();
 
-    if (EsferaClass)
-    {
-        if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("EsferaClass está configurada"));
-        }
-
-        UWorld* World = GetWorld();
-        if (World)
-        {
-            FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100.f;
-            FRotator SpawnRotation = GetActorRotation();
-
-            AProyectil* SpawnedEsfera = World->SpawnActor<AProyectil>(EsferaClass, SpawnLocation, SpawnRotation);
-            if (SpawnedEsfera)
-            {
-                // Inicializa la esfera con la dirección del personaje
-                FVector Direction = GetActorForwardVector();
-                SpawnedEsfera->Initialize(Direction);
-
-                if (GEngine)
-                {
-                    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Esfera spawneada"));
-                }
-            }
-            else
-            {
-                if (GEngine)
-                {
-                    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Fallo al spawnear la esfera"));
-                }
-            }
-        }
-        else
-        {
-            if (GEngine)
-            {
-                GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("World no válido"));
-            }
-        }
-    }
-    else
-    {
-        if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("EsferaClass no configurada"));
-        }
-    }
+		// Parámetros de spawn
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		SpawnParams.Instigator = GetInstigator();
+		// Spawnear el proyectil
+		FVector ForwardDirection = GetActorForwardVector();
+		if (ForwardDirection.Y >= 0.99) {
+			//SpawnLocation.Y += 200.0f;
+			AProyectil* SpawnedProjectile1 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
+			SpawnedProjectile1->Initialize(ForwardDirection);
+			//SpawnLocation.Y -= 100.0f;
+			//AProyectil* SpawnedProjectile2 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
+			//SpawnedProjectile2->Initialize(ForwardDirection);
+		}
+		else if (ForwardDirection.Y <= -0.99) {
+			//pawnLocation.Y -= 200.0f;
+			AProyectil* SpawnedProjectile2 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
+			SpawnedProjectile2->Initialize(ForwardDirection);
+			//SpawnLocation.Y += 100.0f;
+			//AProyectil* SpawnedProjectile2 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
+			//SpawnedProjectile2->Initialize(ForwardDirection);
+		}
+	}
 }
 
-void ADonkeyKong_USFXCharacter::InitializeEsferaClass()
-{
-    EsferaClass = AProyectil::StaticClass();
-    if (EsferaClass)
-    {
-        if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EsferaClass configurada correctamente"));
-        }
-    }
-    else
-    {
-        if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("No se pudo encontrar la clase Esfera"));
-        }
-    }
-}

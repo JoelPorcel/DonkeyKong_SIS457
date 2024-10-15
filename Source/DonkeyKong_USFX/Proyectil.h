@@ -4,14 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "GameFramework/ProjectileMovementComponent.h" //libreria para UProjectileMovementComponent
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "Proyectil.generated.h"
 
 UCLASS()
 class DONKEYKONG_USFX_API AProyectil : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:
 	// Sets default values for this actor's properties
 	AProyectil();
@@ -38,6 +38,7 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
 
 	virtual void NotifyHit(
 		class UPrimitiveComponent* MyComp,

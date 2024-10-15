@@ -10,7 +10,7 @@ APlataforma::APlataforma()
 
 	//establece el componenete raiz de la malla
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> plataformaMesh(TEXT("StaticMesh'/Game/Geometry/Meshes/1M_Cube_Chamfer.1M_Cube_Chamfer'"));
-	// Crear el componente de malla estática
+	// Crear el componente de malla est?tica
 	plataforma = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("plataforma"));
 	plataforma->SetStaticMesh(plataformaMesh.Object);
 	SetRootComponent(plataforma);
@@ -23,16 +23,68 @@ APlataforma::APlataforma()
 	//Hacer invisible el objeto
 	plataforma->SetVisibility(true);
 
+
 }
 
 // Called when the game starts or when spawned
 void APlataforma::BeginPlay()
 {
 	Super::BeginPlay();
+	//movimiento en Y
+	posicionInicialY = GetActorLocation() + FVector(0.0f, 220.0f, 0.0f);
+	posicionActualY = posicionInicialY;
+	posicionFinalY = posicionActualY + FVector(0.0f, -480.0f, 0.0f);
+	incremento = 4.0f;
+	moverse = true;
+
+	//movimiento en Z
+	posicionInicialZ = GetActorLocation();
+	posicionActualZ = posicionInicialZ;
+	posicionFinalZ = posicionActualZ + FVector(0.0f, 0.0f, -300.0f);
 }
 
 // Called every frame
 void APlataforma::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	movimientoY();
+	movimientoZ();
 }
+
+void APlataforma::movimientoY()
+{
+	if (GetMoverseY()) {
+		if (moverse)
+		{
+			if (posicionActualY.Y > posicionFinalY.Y) posicionActualY.Y -= incremento;
+			else moverse = false;
+		}
+		else
+		{
+			if (posicionActualY.Y < posicionInicialY.Y) posicionActualY.Y += incremento;
+			else moverse = true;
+		}
+
+		SetActorLocation(posicionActualY);
+	}
+
+}
+
+void APlataforma::movimientoZ()
+{
+	if (GetMoverseZ()) {
+		if (moverse)
+		{
+			if (posicionActualZ.Z > posicionFinalZ.Z) posicionActualZ.Z -= incremento;
+			else moverse = false;
+		}
+		else
+		{
+			if (posicionActualZ.Z < posicionInicialZ.Z) posicionActualZ.Z += incremento;
+			else moverse = true;
+		}
+		SetActorLocation(posicionActualZ);
+	}
+}
+
+

@@ -6,6 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "DonkeyKong_USFXGameMode.generated.h"
 
+class AMuro;
+
 UCLASS(minimalapi)
 class ADonkeyKong_USFXGameMode : public AGameModeBase
 {
@@ -17,13 +19,18 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+private:
+	UPROPERTY()
+	class AMono* mono;
+
 public:
 	virtual void Tick(float DeltaTime) override;
 
 	TMap<int, AActor*> Plataformas;
 	TArray<AActor*> Barriles;
 	TArray<AActor*> Parkour;
-	TArray<AActor*> Enemigos;
+	TArray<AMuro*> Muros;
+	//TArray<AMono*> Enemigos; // mono
 	FVector Posicion;
 	FRotator Rotacion;
 	FVector Spawn;
@@ -32,20 +39,29 @@ public:
 	float tiempo;
 	float constant_z;
 	int random;
-	int desicion;
-	int componentes;
-	int movimiento;
 	int ID;
-	AActor* destruir = nullptr;
+	void PlataformasMovimiento();
+	int limitePlataformas;
 
 	//enemigos
-	FVector enemigo;
-	FVector enemigo_;
-	FVector Pu;
+	FVector enemigoAleatorio;
 	int enemigosCant;
-	float z;
-	float y;
-	int control;
+	void GenerarEnemigos();
+
+protected:
+	TArray<TSubclassOf<class AMuro>> Paredes;
+
+	float Timer;
+
+	void GenerarParedesAleatorias();
+	void ConstruccionMuros();
+
+	int IndiceAleatorio;
+
+	TSubclassOf<class AMuro> ParedesAleatorias;
+	FVector UbicacionAleatoria;
+	int PlataformaAleatoria;
+	int CantidadMuros;
 };
 
 

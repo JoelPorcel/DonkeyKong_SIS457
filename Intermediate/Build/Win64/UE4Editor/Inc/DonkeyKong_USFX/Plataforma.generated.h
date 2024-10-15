@@ -58,7 +58,10 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(APlataforma)
 
 
-#define DonkeyKong_USFX_Source_DonkeyKong_USFX_Plataforma_h_12_PRIVATE_PROPERTY_OFFSET
+#define DonkeyKong_USFX_Source_DonkeyKong_USFX_Plataforma_h_12_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__plataforma() { return STRUCT_OFFSET(APlataforma, plataforma); }
+
+
 #define DonkeyKong_USFX_Source_DonkeyKong_USFX_Plataforma_h_9_PROLOG
 #define DonkeyKong_USFX_Source_DonkeyKong_USFX_Plataforma_h_12_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

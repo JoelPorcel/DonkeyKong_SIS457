@@ -8,14 +8,25 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPrimitiveComponent;
+class AActor;
+struct FHitResult;
 #ifdef DONKEYKONG_USFX_Barril_generated_h
 #error "Barril.generated.h already included, missing '#pragma once' in Barril.h"
 #endif
 #define DONKEYKONG_USFX_Barril_generated_h
 
 #define DonkeyKong_USFX_Source_DonkeyKong_USFX_Barril_h_12_SPARSE_DATA
-#define DonkeyKong_USFX_Source_DonkeyKong_USFX_Barril_h_12_RPC_WRAPPERS
-#define DonkeyKong_USFX_Source_DonkeyKong_USFX_Barril_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define DonkeyKong_USFX_Source_DonkeyKong_USFX_Barril_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execOnOverlapBegin);
+
+
+#define DonkeyKong_USFX_Source_DonkeyKong_USFX_Barril_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execOnOverlapBegin);
+
+
 #define DonkeyKong_USFX_Source_DonkeyKong_USFX_Barril_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesABarril(); \

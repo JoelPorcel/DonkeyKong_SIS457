@@ -7,7 +7,6 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Proyectil.h"
-#include "BarrilSaltador.h"
 #include "Engine/World.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -26,9 +25,9 @@ ADonkeyKong_USFXCharacter::ADonkeyKong_USFXCharacter()
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->SetUsingAbsoluteRotation(true); // Rotation of the character should not affect rotation of boom
 	CameraBoom->bDoCollisionTest = false;
-	CameraBoom->TargetArmLength = 3500.f;
-	CameraBoom->SocketOffset = FVector(0.f,0.f,1000.f);
-	CameraBoom->SetRelativeRotation(FRotator(0.f,180.f,0.f));
+	CameraBoom->TargetArmLength = 2500.f;
+	CameraBoom->SocketOffset = FVector(0.f, 0.f, 700.f);
+	CameraBoom->SetRelativeRotation(FRotator(0.f, 180.f, 0.f));
 
 	// Create a camera and attach to boom
 	SideViewCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("SideViewCamera"));
@@ -50,12 +49,25 @@ ADonkeyKong_USFXCharacter::ADonkeyKong_USFXCharacter()
 	leftmax = 1700.0f;
 	rightmin = -1300.0f;
 	rightmax = -1700.0f;
+
+	//vidas 
+	vidas = 3;
+	condicion = 800.0f;
+	puntaje = 0;
+	sumarpuntos = 150.0f;
+	if (GEngine) {
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Vidas: %d"), GetVidas()));
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Puntaje actual: %.1f"), GetPuntaje()));
+	}
 }
 
 void ADonkeyKong_USFXCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	salto();
+	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Puntaje actual: %.1f"), GetPuntaje()));
+	ControlPuntos();
+	ControlVidas();
 }
 
 void ADonkeyKong_USFXCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
@@ -82,7 +94,7 @@ void ADonkeyKong_USFXCharacter::salto()
 void ADonkeyKong_USFXCharacter::MoveRight(float Value)
 {
 	// add movement in that direction
-	AddMovementInput(FVector(0.f,-1.f,0.f), Value);
+	AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
 }
 
 void ADonkeyKong_USFXCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
@@ -101,11 +113,11 @@ void ADonkeyKong_USFXCharacter::SpawnEsfera()
 	ProjectileClass = AProyectil::StaticClass();
 	if (ProjectileClass)
 	{
-		// Obtener la ubicación y rotación del jugador
+		// Obtener la ubicaci?n y rotaci?n del jugador
 		FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100; // Ajustar la distancia de spawn
 		FRotator SpawnRotation = GetActorRotation();
 
-		// Parámetros de spawn
+		// Par?metros de spawn
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
 		SpawnParams.Instigator = GetInstigator();
@@ -130,3 +142,26 @@ void ADonkeyKong_USFXCharacter::SpawnEsfera()
 	}
 }
 
+void ADonkeyKong_USFXCharacter::ControlPuntos()
+{
+	FVector ubicacion = GetActorLocation();
+	if (ubicacion.Z >= condicion) {
+		puntaje += 100;
+		condicion += 800.0f;
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Emerald, FString::Printf(TEXT("Puntaje actual: %.1f"), GetPuntaje()));
+	}
+	if (puntaje >= sumarpuntos) {
+		vidas++;
+		sumarpuntos += 150.0f;
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, FString::Printf(TEXT("Obtuviste una vida extra, vidas: %d"), GetVidas()));
+	}
+	if (puntaje <= 0) puntaje = 0;
+}
+
+void ADonkeyKong_USFXCharacter::ControlVidas()
+{
+	if (vidas <= 0) {
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Red, FString::Printf(TEXT("Perdiste el juego ")));
+		Destroy();
+	}
+}

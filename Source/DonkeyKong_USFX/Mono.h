@@ -12,10 +12,13 @@ UCLASS()
 class DONKEYKONG_USFX_API AMono : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AMono();
+
+	UPROPERTY()
+	AMono* Instancia;
 
 protected:
 	// Called when the game starts or when spawned
@@ -24,12 +27,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
 	TSubclassOf<AProyectil> ProjectileClass;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* puerta;
+	UStaticMeshComponent* monoMesh;
 
 	void SpawnProyectil();
 	float intervalo;

@@ -3,16 +3,16 @@
 
 #include "MuroElectrico.h"
 #include "UObject/ConstructorHelpers.h"
-#include "Components/StaticMeshComponent.h"
-#include "Components/SphereComponent.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "BarrilExplosivo.h"
+#include "Components/SphereComponent.h"
 
 AMuroElectrico::AMuroElectrico()
 {
+	PrimaryActorTick.bCanEverTick = true;
+	MuroMesh->SetMaterial(0, LoadObject<UMaterial>(nullptr, TEXT("Material'/Game/StarterContent/Materials/M_Tech_Hex_Tile_Pulse.M_Tech_Hex_Tile_Pulse'")));
 
-	MuroMesh->SetMaterial(0, LoadObject<UMaterial>(nullptr, TEXT("Material'/Game/StarterContent/Materials/M_Water_Lake.M_Water_Lake'")));
-
-	ParticleSystem = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("ParticleSystem"));
+	ParticleSystem = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("ParticleSystem1"));
 	ParticleSystem->SetupAttachment(RootComponent);
 
 	static ConstructorHelpers::FObjectFinder<UParticleSystem> ParticleSystemAsset(TEXT("ParticleSystem'/Game/StarterContent/Particles/P_Sparks.P_Sparks'"));
@@ -20,13 +20,47 @@ AMuroElectrico::AMuroElectrico()
 	{
 		ParticleSystem->SetTemplate(ParticleSystemAsset.Object);
 	}
+	MuroMesh->SetCollisionObjectType(ECollisionChannel::ECC_WorldStatic);
+	MuroMesh->SetCollisionResponseToAllChannels(ECR_Overlap);
 
-
+	NombreDelMuro = "Muro Electrico";
 }
 
-void AMuroElectrico::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
+void AMuroElectrico::BeginPlay()
 {
-	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Colicon")));
-	Other->Destroy();
+	Super::BeginPlay();
+}
+
+void AMuroElectrico::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Green, TEXT("Muro creado"));
+}
+
+
+void AMuroElectrico::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	Mensaje();
+	//if (OtherActor && OtherActor != this)  // Aseg?rate de no destruir el propio muro
+	//{
+	//	OtherActor->Destroy();
+	//}
+	Barril = Cast<ABarrilExplosivo>(OtherActor);
+	if (Barril) {
+		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Green, TEXT("Superposicion con Barril!"));
+		Barril->BarrilColision->SetSphereRadius(300.0f);
+		Barril->BarrilMesh->SetVisibility(false);
+		Barril->VelocidadMovimiento = 0.0f;
+		GetWorld()->GetTimerManager().SetTimer(Timer, this, &AMuro::destruirBarril, 3.F, false);
+	}
+}
+
+void AMuroElectrico::Mensaje()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, FString::Printf(TEXT("Esta es una pared electrica")));
+}
+
+void AMuroElectrico::armarMuro()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Green, TEXT("Muro electrico armado"));
 }

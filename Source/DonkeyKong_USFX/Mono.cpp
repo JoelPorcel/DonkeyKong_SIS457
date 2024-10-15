@@ -3,30 +3,43 @@
 
 #include "Mono.h"
 #include "Proyectil.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AMono::AMono()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> puertaMesh(TEXT("StaticMesh'/Game/Enemigos/Donkey_Kong_tiene_una_0915005005_refine.Donkey_Kong_tiene_una_0915005005_refine'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> mono(TEXT("StaticMesh'/Game/Geometry/Meshes/1M_Cube.1M_Cube'"));
 	// Crear el componente de malla est?tica
-	puerta = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("puerta"));
+	monoMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("puerta"));
 	//SetStaticMesh() asigna una malla estatica a la instancia
 	//CubeMeshAsset.Object obtiene el objeto malla y lo asigna a la instancia
-	puerta->SetStaticMesh(puertaMesh.Object);
+	monoMesh->SetStaticMesh(mono.Object);
 	// Establecer el componente de malla como el componente ra?z
-	SetRootComponent(puerta);
+	SetRootComponent(monoMesh);
 	//Modifica la forma del objeto
 
 	intervalo = 0.0f;
+
+	//Patron singleton
+	TArray<AActor*> Instancias;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AMono::StaticClass(), Instancias);
+	if (Instancias.Num() > 1)
+	{
+		//If exist at least one of them, set the instance with the first found one
+		Instancia = Cast<AMono>(Instancias[0]);
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("%s Ya existe"), *Instancia->GetName()));
+		//Then Destroy this Actor
+		Destroy();
+	}
 }
 
 // Called when the game starts or when spawned
 void AMono::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame

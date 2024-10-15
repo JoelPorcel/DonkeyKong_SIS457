@@ -3,18 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Proyectil.h"
 #include "GameFramework/Character.h"
 #include "DonkeyKong_USFXCharacter.generated.h"
 
-class AProyectil;
-class ABarrilSaltador;
-
-UCLASS(config=Game)
+UCLASS(config = Game)
 class ADonkeyKong_USFXCharacter : public ACharacter
 {
 	GENERATED_BODY()
-
-	virtual void Tick(float DeltaTime) override;
 
 	/** Side view camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -59,7 +55,15 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	void salto();
+
+	void SpawnEsfera();
 	// End of APawn interface
+	int vidas;
+	float puntaje;
+	float sumarpuntos;
+	float condicion;
+	void ControlPuntos();
+	void ControlVidas();
 
 
 public:
@@ -70,5 +74,10 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
-	void SpawnEsfera();
+	virtual void Tick(float DeltaTime) override;
+
+	FORCEINLINE int GetVidas() { return vidas; }
+	FORCEINLINE void SetVidas(int _vidas){ vidas = _vidas; }
+	FORCEINLINE float GetPuntaje() { return puntaje; }
+	FORCEINLINE void SetPuntaje(float _puntaje) { puntaje = _puntaje; }
 };

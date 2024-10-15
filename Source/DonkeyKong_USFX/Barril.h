@@ -11,53 +11,50 @@ class DONKEYKONG_USFX_API ABarril : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+public:
 	// Sets default values for this actor's properties
 	ABarril();
+	float DireccionMovimiento;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	class UStaticMeshComponent* BarrilMesh;
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Componentes")
+	//class UComponenteExtra* Componenteextra;
 
-	////Componente de velocidad
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	//class UProjectileMovementComponent* BarrilMovement;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* BarrilMesh;
 
-	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	//float SpeedIncrease;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class USphereComponent* BarrilColision;
 
-	//virtual void NotifyHit(
-	//	class UPrimitiveComponent* MyComp,
-	//	class AActor* Other,
-	//	class UPrimitiveComponent* OtherComp,
-	//	bool bSelfMoved,
-	//	FVector HitLocation,
-	//	FVector HitNormal,
-	//	FVector NormalImpulse,
-	//	const FHitResult& Hit
-	//) override;
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	float VelocidadMovimiento;
 
-	//MOVIMIENTO 2
-	FVector eje;
-	float inicial = 0;
-	float primero = 3.7;
-	float segundo = 10.5;
-	float incremento = 0;
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	float LimiteMinY;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//float MinYLimit;
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	float LimiteMaxY;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//float MaxYLimit;
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	float CoordenadaFijaX;
 
-	////limites de movimiento
-	//FVector ubicacionActual;
-	//FVector velocidadActual;
+	UFUNCTION()
+	virtual void OnOverlapBegin(
+		UPrimitiveComponent* OverlappedComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult);
+
+	void destruirBarril();
+
+	FTimerHandle Timer;
 };

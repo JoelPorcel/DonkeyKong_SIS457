@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\DonkeyKong_USFX.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{D5246FE6-0825-43B1-9AED-27EF3469E3AC}</UniqueIdentifier>
+      <UniqueIdentifier>{1CEF9CE0-F944-4204-ABE7-1337DBF8D988}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\DonkeyKong_USFX.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{ABE6EF58-258B-478F-9604-5A442AF5E87C}</UniqueIdentifier>
+      <UniqueIdentifier>{C1DADA1B-D2D5-4CEA-B787-DF8E9BDF774A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\DonkeyKong_USFX">
-      <UniqueIdentifier>{A17FF0B9-30DD-41E4-81DC-D14C9DAC1D18}</UniqueIdentifier>
+      <UniqueIdentifier>{5CF1B9E0-904D-47EE-A74A-D40125C578AF}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\DonkeyKong_USFX\Barril.cpp">
       <Filter>Source\DonkeyKong_USFX</Filter>
@@ -38,10 +38,28 @@
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\Barril.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\BarrilComun.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\BarrilComun.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\BarrilExplosivo.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\BarrilExplosivo.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\DonkeyKong_USFX\BarrilSaltador.cpp">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\BarrilSaltador.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\ComponenteExtra.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\ComponenteExtra.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
     <None Include="..\..\Source\DonkeyKong_USFX\DonkeyKong_USFX.Build.cs">
@@ -63,6 +81,12 @@
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\DonkeyKong_USFXGameMode.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\FabricaMuros.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\FabricaMuros.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\DonkeyKong_USFX\Mono.cpp">
@@ -89,6 +113,12 @@
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\MuroElectrico.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\MuroEspinoso.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\MuroEspinoso.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\DonkeyKong_USFX\MuroLadrillo.cpp">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClCompile>
@@ -107,22 +137,16 @@
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\Plataforma.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\DonkeyKong_USFX\PlataformaMovible.cpp">
-      <Filter>Source\DonkeyKong_USFX</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\DonkeyKong_USFX\PlataformaMovible.h">
-      <Filter>Source\DonkeyKong_USFX</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\DonkeyKong_USFX\PlataformaSuvible.cpp">
-      <Filter>Source\DonkeyKong_USFX</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\DonkeyKong_USFX\PlataformaSuvible.h">
-      <Filter>Source\DonkeyKong_USFX</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Source\DonkeyKong_USFX\Proyectil.cpp">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\Proyectil.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\TiendaMuros.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\TiendaMuros.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
   </ItemGroup>

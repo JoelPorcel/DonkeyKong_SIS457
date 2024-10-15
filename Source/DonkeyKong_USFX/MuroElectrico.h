@@ -7,24 +7,36 @@
 #include "MuroElectrico.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class DONKEYKONG_USFX_API AMuroElectrico : public AMuro
 {
 	GENERATED_BODY()
-	
+
+public:
+	AMuroElectrico();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 	class UParticleSystemComponent* ParticleSystem;
 
-	AMuroElectrico();
-	virtual void NotifyHit(
-		class UPrimitiveComponent* MyComp,
-		class AActor* Other,
-		class UPrimitiveComponent* OtherComp,
-		bool bSelfMoved,
-		FVector HitLocation,
-		FVector HitNormal,
-		FVector NormalImpulse,
-		const FHitResult& Hit
-	) override;
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+protected:
+	void OnOverlapBegin(
+		UPrimitiveComponent* OverlappedComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult) override;
+
+	void Mensaje() override;
+
+	void armarMuro() override;
 };

@@ -1,107 +1,90 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "Barril.h"
+#include "Components/SphereComponent.h"
+#include "ComponenteExtra.h"
+#include "DonkeyKong_USFXCharacter.h"
 
-// Sets default values
 ABarril::ABarril()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = true;
 
-	//establece el componenete raiz de la malla
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> Barril(TEXT("StaticMesh'/Game/Geometry/Meshes/Barril.Barril'"));
-	// Crear el componente de malla estática
-	//Mallas de la clase
-	BarrilMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Malla_Barril"));
-	BarrilMesh->SetStaticMesh(Barril.Object);
-	BarrilMesh->SetRelativeScale3D(FVector(1.5, 1.5, 2.0));
-	BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
-	BarrilMesh->SetSimulatePhysics(true);
-	BarrilMesh->SetMobility(EComponentMobility::Movable);
-	BarrilMesh->SetMassOverrideInKg(NAME_None, 100000000000000.0f); // Ajusta el valor según sea necesario
-	SetRootComponent(BarrilMesh);
+    // Configuraci?n del mesh
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> Barril(TEXT("StaticMesh'/Game/Geometry/Meshes/Barril.Barril'"));
 
-	////Movimiento
-	//BarrilMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Barril_Movimiento"));
-	//BarrilMovement->UpdatedComponent = BarrilMesh;
-	//BarrilMovement->InitialSpeed = 100.0f;
-	//BarrilMovement->MaxSpeed = 900.0f;
-	//BarrilMovement->bRotationFollowsVelocity = false;
-	//BarrilMovement->bShouldBounce = true;
-	//BarrilMovement->Bounciness = 0.0f;
-	//BarrilMovement->Friction = 0.2;
+    BarrilMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Malla_Barril"));
+    BarrilMesh->SetStaticMesh(Barril.Object);
+    BarrilMesh->SetRelativeScale3D(FVector(1.5f, 1.5f, 2.0f));
+    BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
+    BarrilMesh->SetSimulatePhysics(true);
+    BarrilMesh->SetMobility(EComponentMobility::Movable);
+    BarrilMesh->BodyInstance.bLockXRotation = true;
+    BarrilMesh->BodyInstance.bLockYRotation = true;
+    BarrilMesh->BodyInstance.bLockZRotation = true;
+    SetRootComponent(BarrilMesh);
+    //Componenteextra = CreateDefaultSubobject<UComponenteExtra>(TEXT("ComponenteExtra"));
 
-	//limites del barril
-	inicial = 0;
-	primero = 4.1;
-	segundo = 10.5;
 
-	//SpeedIncrease = 100.f;
+    //malla de colicion 
+    BarrilColision = CreateDefaultSubobject<USphereComponent>(TEXT("Barril_Colision"));
+    BarrilColision->SetSphereRadius(38.0f);
+    BarrilColision->SetRelativeLocation(FVector(0.0f, 0.0f, 30.0f));
+    BarrilColision->SetVisibility(true);
+    BarrilColision->SetupAttachment(GetRootComponent());
+    BarrilColision->OnComponentBeginOverlap.AddDynamic(this, &ABarril::OnOverlapBegin);
 
-	////Limites
-	//MinYLimit = 2100.0f;
-	//MaxYLimit = -1600.0f;
+
+    // Configuraci?n del movimiento
+    VelocidadMovimiento = 1000.0f;
+    LimiteMinY = -1600.0f;
+    LimiteMaxY = 2100.0f;
+    DireccionMovimiento = 1.0f;
+    CoordenadaFijaX = 1280.0f;
 }
 
-// Called when the game starts or when spawned
 void ABarril::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 
+    // Establecer posici?n y rotaci?n inicial
+    FVector PosicionInicial = GetActorLocation();
+    PosicionInicial.X = CoordenadaFijaX;
+    SetActorLocation(PosicionInicial);
+    SetActorRotation(FRotator(90.0f, 0.0f, 0.0f));
 }
 
-// Called every frame
 void ABarril::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
-	eje = GetActorLocation();
-	if (eje.Z <= 320.f) Destroy();
-	eje.X = 1280.0f;
-	inicial += DeltaTime;
-	if (eje.Z <= 910) incremento = 0.4;
-	if (inicial < 3.9 + incremento) {
-		eje.Y -= 10.4f;
-		BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
-		SetActorLocation(eje);
-	}
+    Super::Tick(DeltaTime);
 
-	if (inicial < 10) {
-		eje.Y += 3.9f;
-		BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
-		SetActorLocation(eje);
+    // Obtener la posici?n actual
+    FVector PosicionActual = GetActorLocation();
 
-	}
-	if (inicial >= 10) {
-		inicial = 0;
-	}
-	BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
-	SetActorLocation(eje);
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Cantidad del contenedor: %f"), inicial));
+    // Calcular nueva posici?n
+    float NuevaPosicionY = PosicionActual.Y + (VelocidadMovimiento * DireccionMovimiento * DeltaTime);
 
-	//ubicacionActual = GetActorLocation();
-	//velocidadActual = BarrilMovement->Velocity;
-	//if (ubicacionActual.Y >= MinYLimit)
-	//{
-	//	BarrilMovement->Velocity = FVector(-velocidadActual.X, -115.0f, -115.0f);
-	//}
-	//else if (ubicacionActual.Y <= MaxYLimit)
-	//{
-	//	BarrilMovement->Velocity = FVector(velocidadActual.X, 115.0f, 115.0f);
-	//}
-	//ubicacionActual.X = 1280.0f;
-	//BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
+    // Verificar l?mites y cambiar direcci?n si es necesario
+    if (NuevaPosicionY <= LimiteMinY)
+    {
+        DireccionMovimiento = 1.0f;
+    }
+    else if (NuevaPosicionY >= LimiteMaxY)
+    {
+        DireccionMovimiento = -1.0f;
+    }
+
+    // Actualizar posici?n manteniendo la rotaci?n fija
+    FVector NuevaPosicion = FVector(CoordenadaFijaX, NuevaPosicionY, PosicionActual.Z);
+    SetActorLocation(NuevaPosicion);
+    // Asegurar que la rotaci?n se mantiene fija
+    SetActorRotation(FRotator(90.0f, 0.0f, 0.0f));
 }
 
+void ABarril::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+}
 
-//void ABarril::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
-//{
-//		Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
-//	
-//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Entro")));
-//		FVector CurrentVelocity = BarrilMovement->Velocity;
-//		FVector NewVelocity = CurrentVelocity.GetSafeNormal() * (CurrentVelocity.Size() + this->SpeedIncrease);
-//		if (NewVelocity.Size() <= BarrilMovement->MaxSpeed) {
-//			BarrilMovement->Velocity = NewVelocity;
-//		}
-//}
+void ABarril::destruirBarril()
+{
+    this->Destroy();
+}

@@ -3,6 +3,7 @@
 
 #include "Proyectil.h"
 #include "Components/SphereComponent.h"
+#include "BarrilSaltador.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/AudioComponent.h"
 
@@ -17,15 +18,15 @@ AProyectil::AProyectil()
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> ProjectileMeshAsset(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Sphere.Shape_Sphere'"));
 	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProjectilMesh"));
 	ProjectileMesh->SetStaticMesh(ProjectileMeshAsset.Object);
-	ProjectileMesh->SetWorldScale3D(FVector(0.2f)); // Ajusta el tamaño según sea necesario
+	ProjectileMesh->SetWorldScale3D(FVector(0.2f)); // Ajusta el tama?o seg?n sea necesario
 	ProjectileMesh->SetMaterial(0, LoadObject<UMaterial>(nullptr, TEXT("Material'/Game/StarterContent/Materials/M_Metal_Gold.M_Metal_Gold'")));
 	RootComponent = ProjectileMesh;
 
 	//Audio
-	/*ProjectileAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ProjectileAudio"));
+	ProjectileAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ProjectileAudio"));
 	ProjectileAudioComponent->SetupAttachment(RootComponent);
-	static ConstructorHelpers::FObjectFinder<USoundBase> ProjectileSound(TEXT("SoundWave'/Game/Geometry/Meshes/Kyaa_-sound-effect.Kyaa_-sound-effect'"));
-	ProjectileAudioComponent->SetSound(ProjectileSound.Object);*/
+	//static ConstructorHelpers::FObjectFinder<USoundBase> ProjectileSound(TEXT("SoundWave'/Game/Geometry/Meshes/Kyaa_-sound-effect.Kyaa_-sound-effect'"));
+	//ProjectileAudioComponent->SetSound(ProjectileSound.Object);
 
 	//Colicion
 	ProjectileColision = CreateDefaultSubobject<USphereComponent>(TEXT("Projectil_Colision"));
@@ -36,20 +37,25 @@ AProyectil::AProyectil()
 
 	//movimiento
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
-	ProjectileMovement->UpdatedComponent = ProjectileMesh;
-	ProjectileMovement->InitialSpeed = 1000.f; // Velocidad inicial lenta
-	ProjectileMovement->MaxSpeed = 1000.f; // Velocidad máxima
-	ProjectileMovement->bRotationFollowsVelocity = true;
-	ProjectileMovement->bShouldBounce = true;
-	ProjectileMovement->Bounciness = 0.3f;
-	ProjectileMovement->ProjectileGravityScale = 0.0f; // Sin gravedad
+	if (ProjectileMovement) {
+		ProjectileMovement->UpdatedComponent = ProjectileMesh;
+		ProjectileMovement->InitialSpeed = 1000.f; // Velocidad inicial lenta
+		ProjectileMovement->MaxSpeed = 1000.f; // Velocidad m?xima
+		ProjectileMovement->bRotationFollowsVelocity = true;
+		ProjectileMovement->bShouldBounce = true;
+		ProjectileMovement->Bounciness = 0.3f;
+		ProjectileMovement->ProjectileGravityScale = 0.0f; // Sin gravedad
+	}
 
 	vidaUtil = 0.f;
 }
 
 void AProyectil::Initialize(const FVector& Direction)
 {
-	ProjectileMovement->Velocity = Direction * ProjectileMovement->InitialSpeed;
+	if (ProjectileMovement && ProjectileMovement != nullptr)
+	{
+		ProjectileMovement->Velocity = Direction * ProjectileMovement->InitialSpeed;
+	}
 }
 
 // Called when the game starts or when spawned
@@ -71,12 +77,12 @@ void AProyectil::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiv
 {
 	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
 
-	// Asegúrate de que el componente del otro actor tiene física habilitada
-	if (OtherComp && OtherComp->IsSimulatingPhysics())
+	// Aseg?rate de que el componente del otro actor tiene f?sica habilitada
+	if ((OtherComp && OtherComp->IsSimulatingPhysics()) || Other->IsA(ABarrilSaltador::StaticClass()))
 	{
-		// Aplica un impulso en el punto de impacto en dirección contraria a la normal del impacto
-		FVector ImpulseDirection = HitNormal * -1.0f;  // La dirección opuesta a la normal
-		float ImpulseStrength = 100000.0f; // Ajusta la fuerza del impulso según lo necesites
+		// Aplica un impulso en el punto de impacto en direcci?n contraria a la normal del impacto
+		FVector ImpulseDirection = HitNormal * -1.0f;  // La direcci?n opuesta a la normal
+		float ImpulseStrength = 100000.0f; // Ajusta la fuerza del impulso seg?n lo necesites
 		OtherComp->AddImpulseAtLocation(ImpulseDirection * ImpulseStrength, HitLocation);
 		//OtherComp->DestroyComponent();
 		OtherComp->DestroyComponent();
@@ -84,6 +90,3 @@ void AProyectil::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiv
 	// Luego, destruye el proyectil
 	Destroy();
 }
-
-
-

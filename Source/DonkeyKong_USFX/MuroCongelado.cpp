@@ -4,17 +4,17 @@
 #include "MuroCongelado.h"
 #include "DonkeyKong_USFXCharacter.h"
 #include "UObject/ConstructorHelpers.h"
-#include "Components/StaticMeshComponent.h"
-#include "Components/SphereComponent.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "BarrilExplosivo.h"
+#include "Components/SphereComponent.h"
 
 AMuroCongelado::AMuroCongelado()
 {
-    // Configuración del material del muro
+    PrimaryActorTick.bCanEverTick = true;
     MuroMesh->SetMaterial(0, LoadObject<UMaterial>(nullptr, TEXT("Material'/Game/StarterContent/Materials/M_Basic_Floor.M_Basic_Floor'")));
 
-    // Crear el sistema de partículas
+    // Crear el sistema de part?culas
     ParticleSystem = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("ParticleSystem"));
     ParticleSystem->SetupAttachment(RootComponent);
 
@@ -23,28 +23,53 @@ AMuroCongelado::AMuroCongelado()
     {
         ParticleSystem->SetTemplate(ParticleSystemAsset.Object);
     }
-
-    // Habilitar la detección de superposición
-    MuroMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
     MuroMesh->SetCollisionObjectType(ECollisionChannel::ECC_WorldStatic);
     MuroMesh->SetCollisionResponseToAllChannels(ECR_Overlap);
 
-    // Vincular la función de superposición
-    MuroMesh->OnComponentBeginOverlap.AddDynamic(this, &AMuroCongelado::OnOverlapBegin);
+	NombreDelMuro = "Muro Congelado";
 }
+
+void AMuroCongelado::BeginPlay()
+{
+    Super::BeginPlay();
+}
+
+void AMuroCongelado::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+}
+
 
 void AMuroCongelado::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Superposición detectada")));
-
-    // Verificar si el Actor que colisionó es del tipo ADonkeyKong_USFXCharacter
+    Super::OnOverlapBegin(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
+    //Mensaje();
     ADonkeyKong_USFXCharacter* DonkeyKongCharacter = Cast<ADonkeyKong_USFXCharacter>(OtherActor);
+    Barril = Cast<ABarrilExplosivo>(OtherActor);
+    if (Barril) {
+        GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Green, TEXT("Superposicion con Barril!"));
+        Barril->BarrilColision->SetSphereRadius(300.0f);
+		Barril->BarrilMesh->SetVisibility(false);
+		Barril->VelocidadMovimiento = 0.0f;
+        GetWorld()->GetTimerManager().SetTimer(Timer, this, &AMuro::destruirBarril, 3.F, false);
+    }
     if (DonkeyKongCharacter)
     {
         // El cast fue exitoso, hacer algo con el personaje
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Superposición con Donkey Kong Character!"));
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Superposicion con Donkey Kong Character!"));
 
         // Puedes acceder a las funciones o variables del personaje ahora
         DonkeyKongCharacter->GetCharacterMovement()->MaxWalkSpeed = 0.0f;
+		DonkeyKongCharacter->SetPuntaje(DonkeyKongCharacter->GetPuntaje() - 10);
     }
+}
+
+void AMuroCongelado::Mensaje()
+{
+    GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, FString::Printf(TEXT("Esta es una pared congelada")));
+}
+
+void AMuroCongelado::armarMuro()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Blue, FString::Printf(TEXT("Armando muro congelado")));
 }

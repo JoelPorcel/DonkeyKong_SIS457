@@ -59,7 +59,7 @@ void EmptyLinkFunctionForGeneratedCodePlataforma() {}
 		{ "ToolTip", "declaracion de un puntero a un componente malla" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APlataforma_Statics::NewProp_plataforma = { "plataforma", nullptr, (EPropertyFlags)0x00100000000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlataforma, plataforma), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_APlataforma_Statics::NewProp_plataforma_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_APlataforma_Statics::NewProp_plataforma_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APlataforma_Statics::NewProp_plataforma = { "plataforma", nullptr, (EPropertyFlags)0x00200800000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlataforma, plataforma), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_APlataforma_Statics::NewProp_plataforma_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_APlataforma_Statics::NewProp_plataforma_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APlataforma_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlataforma_Statics::NewProp_plataforma,
 	};
@@ -90,7 +90,7 @@ void EmptyLinkFunctionForGeneratedCodePlataforma() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlataforma, 3310943851);
+	IMPLEMENT_CLASS(APlataforma, 228485);
 	template<> DONKEYKONG_USFX_API UClass* StaticClass<APlataforma>()
 	{
 		return APlataforma::StaticClass();

@@ -6,25 +6,37 @@
 #include "Muro.h"
 #include "MuroPegajoso.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class DONKEYKONG_USFX_API AMuroPegajoso : public AMuro
 {
 	GENERATED_BODY()
-	
+
+public:
+	// Sets default values for this actor's properties
 	AMuroPegajoso();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 	class UParticleSystemComponent* ParticleSystem;
 
-	virtual void NotifyHit(
-		class UPrimitiveComponent* MyComp,
-		class AActor* Other,
-		class UPrimitiveComponent* OtherComp,
-		bool bSelfMoved,
-		FVector HitLocation,
-		FVector HitNormal,
-		FVector NormalImpulse,
-		const FHitResult& Hit
-	) override;
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+protected:
+	void OnOverlapBegin(
+		UPrimitiveComponent* OverlappedComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult) override;
+
+	void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) override;
+
+	void Mensaje() override;
+
+	void armarMuro() override;
 };

@@ -12,12 +12,12 @@ ABarrilSaltador::ABarrilSaltador()
 	PrimaryActorTick.bCanEverTick = true;
 
 	//establece el componenete raiz de la malla
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> Barril(TEXT("StaticMesh'/Game/Geometry/Meshes/BarrilRebote.BarrilRebote'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> Barril(TEXT("StaticMesh'/Game/Geometry/Meshes/BarrilSaltador.BarrilSaltador'"));
 	// Crear el componente de malla est?tica
 	//Mallas de la clase
 	BarrilMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Malla_Barrilmovimiento"));
 	BarrilMesh->SetStaticMesh(Barril.Object);
-	BarrilMesh->SetWorldScale3D(FVector(0.2f));
+	BarrilMesh->SetRelativeScale3D(FVector(1.5, 1.5, 2.0));
 	BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
 	SetRootComponent(BarrilMesh);
 
@@ -36,7 +36,7 @@ ABarrilSaltador::ABarrilSaltador()
 	BarrilMovement->bRotationFollowsVelocity = false;
 	BarrilMovement->bShouldBounce = true;
 	BarrilMovement->Bounciness = 0.7f;
-	BarrilMovement->Friction = 0.2;
+	BarrilMovement->Friction = 0.1;
 
 	//incremento de velocidad
 	SpeedIncrease = 250.f;
@@ -58,7 +58,6 @@ void ABarrilSaltador::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	ubicacionActual = GetActorLocation();
-	velocidadActual = BarrilMovement->Velocity;
 	if (ubicacionActual.Y >= MinYLimit)
 	{
 		BarrilMovement->Velocity = FVector(-velocidadActual.X, -115.0f, -115.0f);
@@ -68,12 +67,9 @@ void ABarrilSaltador::Tick(float DeltaTime)
 		BarrilMovement->Velocity = FVector(velocidadActual.X, 115.0f, 115.0f);
 	}
 	ubicacionActual.X = 1280.0f;
-	BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
-}
-
-void ABarrilSaltador::Initialize(const FVector& Direction)
-{
-	BarrilMovement->Velocity = Direction * BarrilMovement->InitialSpeed;
+	if (BarrilMesh) {
+		BarrilMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f));
+	}
 }
 
 void ABarrilSaltador::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
@@ -85,12 +81,5 @@ void ABarrilSaltador::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPri
 
 	if (NewVelocity.Size() <= BarrilMovement->MaxSpeed) {
 		BarrilMovement->Velocity = NewVelocity;
-	}
-
-	if (OtherComp && OtherComp->IsSimulatingPhysics())
-	{
-		FVector ImpulseDirection = HitNormal * -1.0f;
-		float ImpulseStrength = 100000.0f;
-		OtherComp->AddImpulseAtLocation(ImpulseDirection * ImpulseStrength, HitLocation);
 	}
 }

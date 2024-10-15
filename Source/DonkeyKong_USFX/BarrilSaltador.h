@@ -14,10 +14,13 @@ class DONKEYKONG_USFX_API ABarrilSaltador : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ABarrilSaltador();
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class UStaticMeshComponent* BarrilMesh;
@@ -50,13 +53,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MaxYLimit;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 	//limites de movimiento
 	FVector ubicacionActual;
 	FVector velocidadActual;
-
-	void Initialize(const FVector& Direction);
 };

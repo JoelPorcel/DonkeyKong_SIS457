@@ -58,15 +58,7 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ABarrilSaltador)
 
 
-#define DonkeyKong_USFX_Source_DonkeyKong_USFX_BarrilSaltador_h_12_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__BarrilMesh() { return STRUCT_OFFSET(ABarrilSaltador, BarrilMesh); } \
-	FORCEINLINE static uint32 __PPO__BarrilColision() { return STRUCT_OFFSET(ABarrilSaltador, BarrilColision); } \
-	FORCEINLINE static uint32 __PPO__BarrilMovement() { return STRUCT_OFFSET(ABarrilSaltador, BarrilMovement); } \
-	FORCEINLINE static uint32 __PPO__SpeedIncrease() { return STRUCT_OFFSET(ABarrilSaltador, SpeedIncrease); } \
-	FORCEINLINE static uint32 __PPO__MinYLimit() { return STRUCT_OFFSET(ABarrilSaltador, MinYLimit); } \
-	FORCEINLINE static uint32 __PPO__MaxYLimit() { return STRUCT_OFFSET(ABarrilSaltador, MaxYLimit); }
-
-
+#define DonkeyKong_USFX_Source_DonkeyKong_USFX_BarrilSaltador_h_12_PRIVATE_PROPERTY_OFFSET
 #define DonkeyKong_USFX_Source_DonkeyKong_USFX_BarrilSaltador_h_9_PROLOG
 #define DonkeyKong_USFX_Source_DonkeyKong_USFX_BarrilSaltador_h_12_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

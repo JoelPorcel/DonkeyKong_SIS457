@@ -2,6 +2,10 @@
 
 
 #include "Plataforma.h"
+//#include "Components/BoxComponent.h"
+/*#include "Barril.h"
+#include "BarrilExplosivo.h"
+#include "BarrilComun.h*/
 // Sets default values
 APlataforma::APlataforma()
 {
@@ -9,7 +13,7 @@ APlataforma::APlataforma()
 	PrimaryActorTick.bCanEverTick = true;
 
 	//establece el componenete raiz de la malla
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> plataformaMesh(TEXT("StaticMesh'/Game/Geometry/Meshes/1M_Cube_Chamfer.1M_Cube_Chamfer'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> plataformaMesh(TEXT("StaticMesh'/Game/Plataformas/SM_MERGED_Plataforma__8.SM_MERGED_Plataforma__8'"));
 	// Crear el componente de malla est?tica
 	plataforma = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("plataforma"));
 	plataforma->SetStaticMesh(plataformaMesh.Object);
@@ -17,12 +21,17 @@ APlataforma::APlataforma()
 	//Habitar fisicas de  la instancia
 	//plataforma->SetSimulatePhysics(false);
 	//Modifica la forma del objeto
-	plataforma->SetWorldScale3D(FVector(1.9f, 3.0f, 0.5f));
+	plataforma->SetWorldScale3D(FVector(2.75f, 9.5f, 4.0f));
+	plataforma->SetRelativeRotation(FRotator(0.f, 90.f, 0.0f));
 	//Cambia el angulo del objeto (y,z,x)
 	//plataforma->SetRelativeRotation(FRotator(0.0f, 0.0f, 5.0f));
-	//Hacer invisible el objeto
-	plataforma->SetVisibility(true);
 
+	////crea el componente de colision
+	//plataformaCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("plataformaCollision"));
+	//plataformaCollision->SetBoxExtent(FVector(115.0f, 4.0f, 6.0f));
+	//plataformaCollision->SetRelativeLocation(FVector(0.0f, 0.0f, -5.0f));
+	//plataformaCollision->OnComponentBeginOverlap.AddDynamic(this, &APlataforma::OnOverlapBegin);
+	//plataformaCollision->SetupAttachment(plataforma);
 
 }
 
@@ -34,7 +43,7 @@ void APlataforma::BeginPlay()
 	posicionInicialY = GetActorLocation() + FVector(0.0f, 220.0f, 0.0f);
 	posicionActualY = posicionInicialY;
 	posicionFinalY = posicionActualY + FVector(0.0f, -480.0f, 0.0f);
-	incremento = 4.0f;
+	incremento = 2.0f;
 	moverse = true;
 
 	//movimiento en Z
@@ -86,5 +95,15 @@ void APlataforma::movimientoZ()
 		SetActorLocation(posicionActualZ);
 	}
 }
+
+//void APlataforma::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+//{
+//	ABarrilExplosivo* barril = Cast<ABarrilExplosivo>(OtherActor);
+//	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, FString::Printf(TEXT("Coliciono la plataforma")));
+//	if (barril) {
+//		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, FString::Printf(TEXT("Coliciono el barril")));
+//		barril->DireccionMovimiento *= -1;
+//	}
+//}
 
 

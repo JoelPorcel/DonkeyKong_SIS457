@@ -19,6 +19,17 @@
 #include "TiendaMuros.h"
 #include "FabricaMuros.h"
 
+#include "Kismet/GameplayStatics.h"
+
+#include "BuilderNiveles.h"
+#include "BuilderTipoA.h"
+#include "BuilderTipoB.h"
+#include "Arquitecto.h"
+#include "EnemigosFacade.h"
+#include "EnemigoElefante.h"
+#include "DecoradorCorredor.h"
+#include "DecoradorSaltador.h"
+
 ADonkeyKong_USFXGameMode::ADonkeyKong_USFXGameMode()
 {
 	// set default pawn class to our Blueprinted character
@@ -37,7 +48,7 @@ ADonkeyKong_USFXGameMode::ADonkeyKong_USFXGameMode()
 
 void ADonkeyKong_USFXGameMode::BeginPlay()
 {
-
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("Constructor de GameMode en el mundo de DOnkey Kong")));
 	AFabricaMuros* tienda = GetWorld()->SpawnActor<ATiendaMuros>(ATiendaMuros::StaticClass());
 	AMuro* muro = tienda->EncargarMuro("Muro espinoso", FVector(580, 1040, 110), FRotator::ZeroRotator);
 	GEngine->AddOnScreenDebugMessage(-1, 7.f, FColor::Purple, FString::Printf(TEXT("%s"), *muro->ObtenerNombreDelMuro()));
@@ -53,38 +64,46 @@ void ADonkeyKong_USFXGameMode::BeginPlay()
 	enemigosCant = FMath::RandRange(3, 5); //para enemigos
 	signo = 1.0f; //plataformas
 	tiempo = 0.0f;//barriles
-	constant_z = 8.3f; //plataformas
+	constant_z = 20.f; //plataformas
 	int sum = 2;
-	for (int i = 0; i < 6; i++) {
-		limitePlataformas = Plataformas.Num() + sum;
-		random = FMath::RandRange(1, 2); //plataformas
-		for (int j = 0; j < 10; j++) {
-			if (random == 1 && i != 5) {
-				Posicion += FVector(0.0f, -290.f * signo, constant_z);
-				Plataformas.Add(++ID, GetWorld()->SpawnActor<APlataforma>(APlataforma::StaticClass(), Posicion, Rotacion));
-			}
-			else if (random == 2 || i == 5) {
-				Posicion += FVector(0.0f, -290.f * signo, constant_z - constant_z);
-				Plataformas.Add(++ID, GetWorld()->SpawnActor<APlataforma>(APlataforma::StaticClass(), Posicion, FRotator::ZeroRotator));
-			}
-		}
-		PlataformasMovimiento();
-		Posicion += FVector(0.0f, -290.f * signo, constant_z);
-		signo *= -1.0f;
-		Posicion += FVector(0.0f, -275 * signo, 400.f);
-		Rotacion.Roll *= -1;
-		sum += 2;
-	}
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Cantidad del contenedor: %d"), Plataformas.Num()));
+	
+	Constructor = GetWorld()->SpawnActor<ABuilderTipoA>(ABuilderTipoA::StaticClass());
+	Ingeniero = GetWorld()->SpawnActor<AArquitecto>(AArquitecto::StaticClass());
+	//Ingeniero->EstablecerConstructorNiveles(Constructor);
+	//Ingeniero->ConstruirNivel1(5,10,Posicion,1);
+	//Escenario = Ingeniero->obtenerEscenario();
 
-	//for (int e = 0; e < enemigosCant; e++) {
-	//	GenerarEnemigos();
-	//}
+	//Posicion.Y -= 1600.f;
+	Constructor2 = GetWorld()->SpawnActor<ABuilderTipoB>(ABuilderTipoB::StaticClass());
+	Ingeniero->EstablecerConstructorNiveles(Constructor2);
+	Ingeniero->ConstruirNivel1(5, 10, Posicion, 1);
+	PosicionMapa = Ingeniero->obtenerPlataformas();
+	//segundos = 0;	
+
+	//AEnemigosFacade* Facade = GetWorld()->SpawnActor<AEnemigosFacade>(AEnemigosFacade::StaticClass());
+	//Facade->spawn("elefante", 1, PosicionMapa);
+	//AEnemigoElefante* elefante = GetWorld()->SpawnActor<AEnemigoElefante>(AEnemigoElefante::StaticClass(), FVector(1550,-1210,450),FRotator::ZeroRotator);
+	// 
+	// 
+	APawn* Player1 = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	ADecoradorCorredor* saltadorD = GetWorld()->SpawnActor<ADecoradorCorredor>(ADecoradorCorredor::StaticClass());
+	saltadorD->setJugador(Player1);
+	saltadorD->corredor();
+	ADecoradorSaltador* saltadorA = GetWorld()->SpawnActor<ADecoradorSaltador>(ADecoradorSaltador::StaticClass());
+	saltadorA->setJugador(saltadorD);
+	saltadorA->saltador();
 }
 
 void ADonkeyKong_USFXGameMode::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	segundos += DeltaTime;
+	if (segundos >= 10) {
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Cambio de nivel")));
+		//UGameplayStatics::OpenLevel(GetWorld(), FName("nivel2"));
+		segundos = 0;
+	}
+
 	Timer += DeltaTime;
 	if (Timer >= 3 && CantidadMuros <= 4) {
 		GenerarParedesAleatorias();
@@ -182,6 +201,3 @@ void ADonkeyKong_USFXGameMode::GenerarParedesAleatorias()
 	}
 }
 
-void ADonkeyKong_USFXGameMode::ConstruccionMuros()
-{
-}

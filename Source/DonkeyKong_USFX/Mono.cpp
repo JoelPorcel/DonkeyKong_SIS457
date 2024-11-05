@@ -3,6 +3,8 @@
 
 #include "Mono.h"
 #include "Proyectil.h"
+#include "Barril.h"
+#include "BarrilExplosivo.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -55,11 +57,11 @@ void AMono::Tick(float DeltaTime)
 
 void AMono::SpawnProyectil()
 {
-	ProjectileClass = AProyectil::StaticClass();
+	ProjectileClass = ABarrilExplosivo::StaticClass();
 	if (ProjectileClass)
 	{
 		// Obtener la ubicaci?n y rotaci?n del jugador
-		FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100; // Ajustar la distancia de spawn
+		FVector SpawnLocation = GetActorLocation() + FVector(0,-200,0); // Ajustar la distancia de spawn
 		FRotator SpawnRotation = GetActorRotation();
 
 		// Par?metros de spawn
@@ -67,12 +69,10 @@ void AMono::SpawnProyectil()
 		SpawnParams.Owner = this;
 		SpawnParams.Instigator = GetInstigator();
 		// Spawnear el proyectil
-		FVector ForwardDirection = FVector(0.0f, 0.99f, 0.0f);
-		AProyectil* SpawnedProjectile1 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
-		SpawnedProjectile1->Initialize(ForwardDirection);
-		ForwardDirection = FVector(0.0f, -0.99f, 0.0f);
-		AProyectil* SpawnedProjectile2 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
-		SpawnedProjectile2->Initialize(ForwardDirection);
+		FVector ForwardDirection = FVector(0.0f, -1.f, 0.0f);
+		ABarril* SpawnedProjectile1 = GetWorld()->SpawnActor<ABarril>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
+	/*	ForwardDirection = FVector(0.0f, -1.f, 0.0f);
+		ABarril* SpawnedProjectile2 = GetWorld()->SpawnActor<ABarril>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);*/
 	}
 }
 

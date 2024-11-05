@@ -20,8 +20,10 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere)
-	//declaracion de un puntero a un componente malla
 	UStaticMeshComponent* plataforma;
+
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	//class UBoxComponent* plataformaCollision;
 
 private:
 	FVector posicionInicialZ;
@@ -44,4 +46,13 @@ public:
 	FORCEINLINE void SetMoverseY(bool m = false) { y = m; }
 	FORCEINLINE bool GetMoverseZ() { return z; }
 	FORCEINLINE void SetMoverseZ(bool m = false) { z = m; }
+
+	//UFUNCTION()
+	//void OnOverlapBegin(
+	//	UPrimitiveComponent* OverlappedComp,
+	//	AActor* OtherActor,
+	//	UPrimitiveComponent* OtherComp,
+	//	int32 OtherBodyIndex,
+	//	bool bFromSweep,
+	//	const FHitResult& SweepResult);
 };

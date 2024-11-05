@@ -31,4 +31,7 @@ public:
 		bool bFromSweep,
 		const FHitResult& SweepResult) override;
 
+	class UParticleSystemComponent* ParticleSystem;
+
+	int unaExplosion;
 };

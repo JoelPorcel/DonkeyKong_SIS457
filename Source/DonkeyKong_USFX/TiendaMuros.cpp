@@ -8,7 +8,7 @@
 #include "MuroLadrillo.h"
 #include "MuroPegajoso.h"
 
-AMuro* ATiendaMuros::PrepararMuro(FString _Muro, FVector _Posicion, FRotator _Rotacion)
+AMuro* ATiendaMuros::PrepararMuro(FString _Muro, FVector _Posicion, FRotator _Rotacion = FRotator::ZeroRotator)
 {
     if (_Muro.Equals("Muro congelado")) {
 		return GetWorld()->SpawnActor<AMuroCongelado>(AMuroCongelado::StaticClass(), _Posicion, _Rotacion);

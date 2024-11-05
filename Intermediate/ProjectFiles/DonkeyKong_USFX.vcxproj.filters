@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\DonkeyKong_USFX.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{1CEF9CE0-F944-4204-ABE7-1337DBF8D988}</UniqueIdentifier>
+      <UniqueIdentifier>{85D80105-1D1F-4E07-A10D-EEB468ED8852}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\DonkeyKong_USFX.Target.cs">
       <Filter>Source</Filter>
@@ -11,8 +11,10 @@
     <None Include="..\..\Source\DonkeyKong_USFXEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\DonkeyKong_USFX.png" />
+    <None Include="..\..\Source.zip" />
     <Filter Include="Config">
-      <UniqueIdentifier>{C1DADA1B-D2D5-4CEA-B787-DF8E9BDF774A}</UniqueIdentifier>
+      <UniqueIdentifier>{A98F6D98-29FA-4E0F-B199-76CADC689EF0}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,8 +32,14 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\DonkeyKong_USFX">
-      <UniqueIdentifier>{5CF1B9E0-904D-47EE-A74A-D40125C578AF}</UniqueIdentifier>
+      <UniqueIdentifier>{2294B873-3E56-4FA1-83BA-96491F5B6860}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\Arquitecto.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\Arquitecto.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\DonkeyKong_USFX\Barril.cpp">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClCompile>
@@ -56,10 +64,46 @@
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\BarrilSaltador.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\BuilderNiveles.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\BuilderNiveles.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\BuilderTipoA.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\BuilderTipoA.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\BuilderTipoB.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\BuilderTipoB.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\DonkeyKong_USFX\ComponenteExtra.cpp">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\ComponenteExtra.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\Decorador.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\Decorador.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\DecoradorCorredor.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\DecoradorCorredor.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\DecoradorSaltador.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\DecoradorSaltador.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
     <None Include="..\..\Source\DonkeyKong_USFX\DonkeyKong_USFX.Build.cs">
@@ -83,10 +127,58 @@
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\DonkeyKong_USFXGameMode.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\EnemigoAve.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\EnemigoAve.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\EnemigoElefante.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\EnemigoElefante.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\EnemigoLobo.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\EnemigoLobo.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\EnemigoPuercoEspin.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\EnemigoPuercoEspin.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\Enemigos.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\Enemigos.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\EnemigosFacade.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\EnemigosFacade.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\Escaleras.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\Escaleras.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\DonkeyKong_USFX\FabricaMuros.cpp">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\DonkeyKong_USFX\FabricaMuros.h">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DonkeyKong_USFX\IJugador.cpp">
+      <Filter>Source\DonkeyKong_USFX</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DonkeyKong_USFX\IJugador.h">
       <Filter>Source\DonkeyKong_USFX</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\DonkeyKong_USFX\Mono.cpp">

@@ -25,7 +25,7 @@ ADonkeyKong_USFXCharacter::ADonkeyKong_USFXCharacter()
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->SetUsingAbsoluteRotation(true); // Rotation of the character should not affect rotation of boom
 	CameraBoom->bDoCollisionTest = false;
-	CameraBoom->TargetArmLength = 2500.f;
+	CameraBoom->TargetArmLength = 3500.f;
 	CameraBoom->SocketOffset = FVector(0.f, 0.f, 700.f);
 	CameraBoom->SetRelativeRotation(FRotator(0.f, 180.f, 0.f));
 
@@ -39,10 +39,10 @@ ADonkeyKong_USFXCharacter::ADonkeyKong_USFXCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->GravityScale = 2.f;
 	GetCharacterMovement()->AirControl = 0.80f;
-	GetCharacterMovement()->JumpZVelocity = 1300.f;
+	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->GroundFriction = 3.f;
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
-	GetCharacterMovement()->MaxFlySpeed = 600.f;
+	GetCharacterMovement()->MaxFlySpeed = 1200.f;
 
 	//salto alto
 	leftmin = 2100.0f;
@@ -59,15 +59,64 @@ ADonkeyKong_USFXCharacter::ADonkeyKong_USFXCharacter()
 		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Vidas: %d"), GetVidas()));
 		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Puntaje actual: %.1f"), GetPuntaje()));
 	}
+
+	//subir escalera
+	subir = false;
+	agarrar = false;
+	velocidadEscalera = 100.0f;
 }
 
 void ADonkeyKong_USFXCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	salto();
-	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Puntaje actual: %.1f"), GetPuntaje()));
 	ControlPuntos();
 	ControlVidas();
+	FVector ubicacion3 = GetActorLocation();
+	ubicacion3.X = 1208.0f;
+	SetActorLocation(ubicacion3);
+}
+
+void ADonkeyKong_USFXCharacter::subirEscaleras()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Subir escaleras")));
+	if (subir) {
+		ubicacion = GetActorLocation();
+		ubicacion.Z += 130;
+		SetActorLocation(ubicacion);
+	}
+}
+
+void ADonkeyKong_USFXCharacter::bajarEscaleras()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Bajar escaleras")));
+	if (subir) {
+		ubicacion2 = GetActorLocation();
+		ubicacion2.Z -= 70;
+		SetActorLocation(ubicacion2);
+	}
+}
+
+void ADonkeyKong_USFXCharacter::agarrarEscaleras()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Blue, FString::Printf(TEXT("Agarrar escaleras")));
+	if (agarrar) {
+		SetSubir(true);
+		GetCharacterMovement()->GravityScale = 0.0f;
+		GetCharacterMovement()->Velocity.Z = 0.0f;
+		GetCharacterMovement()->Velocity.Y = 0.0f;
+		GetCharacterMovement()->AirControl = 0.3f;
+	}
+}
+
+float ADonkeyKong_USFXCharacter::corredor()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Correr++++++++++++++++++++++++++++++++")));
+	return GetCharacterMovement()->MaxWalkSpeed;
+}
+
+float ADonkeyKong_USFXCharacter::saltador()
+{
+	return GetCharacterMovement()->JumpZVelocity;
 }
 
 void ADonkeyKong_USFXCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
@@ -76,19 +125,13 @@ void ADonkeyKong_USFXCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ADonkeyKong_USFXCharacter::MoveRight);
+	PlayerInputComponent->BindAction("subirEscaleras", IE_Pressed, this, &ADonkeyKong_USFXCharacter::subirEscaleras);
+	PlayerInputComponent->BindAction("bajarEscaleras", IE_Pressed, this, &ADonkeyKong_USFXCharacter::bajarEscaleras);
+	PlayerInputComponent->BindAction("agarrarEscaleras", IE_Pressed, this, &ADonkeyKong_USFXCharacter::agarrarEscaleras);
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ADonkeyKong_USFXCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ADonkeyKong_USFXCharacter::TouchStopped);
 	PlayerInputComponent->BindAction("SpawnEsfera", IE_Pressed, this, &ADonkeyKong_USFXCharacter::SpawnEsfera);
-}
-
-void ADonkeyKong_USFXCharacter::salto()
-{
-	posicionActual = GetActorLocation();
-	if ((posicionActual.Y <= leftmin && posicionActual.Y >= leftmax) || (posicionActual.Y <= rightmin && posicionActual.Y >= rightmax)) {
-		GetCharacterMovement()->JumpZVelocity = 1300.f;
-	}
-	else GetCharacterMovement()->JumpZVelocity = 1300.f;
 }
 
 void ADonkeyKong_USFXCharacter::MoveRight(float Value)
@@ -144,8 +187,8 @@ void ADonkeyKong_USFXCharacter::SpawnEsfera()
 
 void ADonkeyKong_USFXCharacter::ControlPuntos()
 {
-	FVector ubicacion = GetActorLocation();
-	if (ubicacion.Z >= condicion) {
+	FVector ubicacion6 = GetActorLocation();
+	if (ubicacion6.Z >= condicion) {
 		puntaje += 100;
 		condicion += 800.0f;
 		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Emerald, FString::Printf(TEXT("Puntaje actual: %.1f"), GetPuntaje()));

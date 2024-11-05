@@ -22,6 +22,7 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXCharacter() {}
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	DONKEYKONG_USFX_API UClass* Z_Construct_UClass_AProyectil_NoRegister();
+	DONKEYKONG_USFX_API UClass* Z_Construct_UClass_UIJugador_NoRegister();
 // End Cross Module References
 	void ADonkeyKong_USFXCharacter::StaticRegisterNativesADonkeyKong_USFXCharacter()
 	{
@@ -69,6 +70,7 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXCharacter() {}
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_ProjectileClass;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UE4CodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -161,6 +163,9 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_posicionActual,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::NewProp_ProjectileClass,
 	};
+		const UE4CodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::InterfaceParams[] = {
+			{ Z_Construct_UClass_UIJugador_NoRegister, (int32)VTABLE_OFFSET(ADonkeyKong_USFXCharacter, IIJugador), false },
+		};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ADonkeyKong_USFXCharacter>::IsAbstract,
 	};
@@ -171,11 +176,11 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXCharacter() {}
 		DependentSingletons,
 		nullptr,
 		Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::PropPointers,
-		nullptr,
+		InterfaceParams,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
 		UE_ARRAY_COUNT(Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::PropPointers),
-		0,
+		UE_ARRAY_COUNT(InterfaceParams),
 		0x008000A4u,
 		METADATA_PARAMS(Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_ADonkeyKong_USFXCharacter_Statics::Class_MetaDataParams))
 	};
@@ -188,7 +193,7 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ADonkeyKong_USFXCharacter, 1849063896);
+	IMPLEMENT_CLASS(ADonkeyKong_USFXCharacter, 3781323884);
 	template<> DONKEYKONG_USFX_API UClass* StaticClass<ADonkeyKong_USFXCharacter>()
 	{
 		return ADonkeyKong_USFXCharacter::StaticClass();

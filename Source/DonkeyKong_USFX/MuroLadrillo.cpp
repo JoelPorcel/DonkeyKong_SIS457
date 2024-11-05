@@ -55,9 +55,10 @@ void AMuroLadrillo::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* 
 	Barril = Cast<ABarrilExplosivo>(OtherActor);
 	if (Barril) {
 		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Green, TEXT("Superposicion con Barril!"));
-		Barril->BarrilColision->SetSphereRadius(300.0f);
+		Barril->BarrilColision->SetSphereRadius(700.0f);
 		Barril->BarrilMesh->SetVisibility(false);
-		Barril->VelocidadMovimiento = 0.0f;
+		Barril->BarrilMovement->MaxSpeed = 0.0f;
+		Barril->BarrilMesh->SetCollisionResponseToAllChannels(ECR_Overlap);
 		GetWorld()->GetTimerManager().SetTimer(Timer, this, &AMuro::destruirBarril, 3.F, false);
 	}
 	ADonkeyKong_USFXCharacter* DonkeyKongCharacter = Cast<ADonkeyKong_USFXCharacter>(OtherActor);

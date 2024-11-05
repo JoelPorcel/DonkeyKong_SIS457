@@ -18,6 +18,9 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXGameMode() {}
 	ENGINE_API UClass* Z_Construct_UClass_AGameModeBase();
 	UPackage* Z_Construct_UPackage__Script_DonkeyKong_USFX();
 	DONKEYKONG_USFX_API UClass* Z_Construct_UClass_AMono_NoRegister();
+	DONKEYKONG_USFX_API UClass* Z_Construct_UClass_ABuilderTipoA_NoRegister();
+	DONKEYKONG_USFX_API UClass* Z_Construct_UClass_ABuilderTipoB_NoRegister();
+	DONKEYKONG_USFX_API UClass* Z_Construct_UClass_AArquitecto_NoRegister();
 // End Cross Module References
 	void ADonkeyKong_USFXGameMode::StaticRegisterNativesADonkeyKong_USFXGameMode()
 	{
@@ -36,6 +39,18 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXGameMode() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_mono_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_mono;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Constructor_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Constructor;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Constructor2_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Constructor2;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Ingeniero_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Ingeniero;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -58,8 +73,36 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXGameMode() {}
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_mono = { "mono", nullptr, (EPropertyFlags)0x0040000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADonkeyKong_USFXGameMode, mono), Z_Construct_UClass_AMono_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_mono_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_mono_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor_MetaData[] = {
+		{ "Category", "GameModeBase" },
+		{ "Comment", "//El Actor Constructor\n" },
+		{ "ModuleRelativePath", "DonkeyKong_USFXGameMode.h" },
+		{ "ToolTip", "El Actor Constructor" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor = { "Constructor", nullptr, (EPropertyFlags)0x0040000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADonkeyKong_USFXGameMode, Constructor), Z_Construct_UClass_ABuilderTipoA_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor2_MetaData[] = {
+		{ "Category", "GameModeBase" },
+		{ "ModuleRelativePath", "DonkeyKong_USFXGameMode.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor2 = { "Constructor2", nullptr, (EPropertyFlags)0x0040000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADonkeyKong_USFXGameMode, Constructor2), Z_Construct_UClass_ABuilderTipoB_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor2_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor2_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Ingeniero_MetaData[] = {
+		{ "Category", "GameModeBase" },
+		{ "Comment", "//El Actor Ingeniero\n" },
+		{ "ModuleRelativePath", "DonkeyKong_USFXGameMode.h" },
+		{ "ToolTip", "El Actor Ingeniero" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Ingeniero = { "Ingeniero", nullptr, (EPropertyFlags)0x0040000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADonkeyKong_USFXGameMode, Ingeniero), Z_Construct_UClass_AArquitecto_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Ingeniero_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Ingeniero_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_mono,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Constructor2,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::NewProp_Ingeniero,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ADonkeyKong_USFXGameMode_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ADonkeyKong_USFXGameMode>::IsAbstract,
@@ -88,7 +131,7 @@ void EmptyLinkFunctionForGeneratedCodeDonkeyKong_USFXGameMode() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ADonkeyKong_USFXGameMode, 398602764);
+	IMPLEMENT_CLASS(ADonkeyKong_USFXGameMode, 3759683715);
 	template<> DONKEYKONG_USFX_API UClass* StaticClass<ADonkeyKong_USFXGameMode>()
 	{
 		return ADonkeyKong_USFXGameMode::StaticClass();

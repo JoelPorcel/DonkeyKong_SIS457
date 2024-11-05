@@ -5,10 +5,11 @@
 #include "CoreMinimal.h"
 #include "Proyectil.h"
 #include "GameFramework/Character.h"
+#include "IJugador.h"
 #include "DonkeyKong_USFXCharacter.generated.h"
 
 UCLASS(config = Game)
-class ADonkeyKong_USFXCharacter : public ACharacter
+class ADonkeyKong_USFXCharacter : public ACharacter, public IIJugador
 {
 	GENERATED_BODY()
 
@@ -54,8 +55,6 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	void salto();
-
 	void SpawnEsfera();
 	// End of APawn interface
 	int vidas;
@@ -65,6 +64,11 @@ protected:
 	void ControlPuntos();
 	void ControlVidas();
 
+	bool subir; //variable para controlar si el personaje sube o no con lasm escaleras
+	bool agarrar; //variable para controlar si el personaje agarra las escaleras
+	float velocidadEscalera;
+	FVector ubicacion;
+	FVector ubicacion2;
 
 public:
 	ADonkeyKong_USFXCharacter();
@@ -80,4 +84,18 @@ public:
 	FORCEINLINE void SetVidas(int _vidas){ vidas = _vidas; }
 	FORCEINLINE float GetPuntaje() { return puntaje; }
 	FORCEINLINE void SetPuntaje(float _puntaje) { puntaje = _puntaje; }
+	FORCEINLINE bool GetSubir() { return subir; }
+	FORCEINLINE void SetSubir(bool _subir) { subir = _subir; }
+	FORCEINLINE bool GetAgarrar() { return agarrar; }
+	FORCEINLINE void SetAgarrar(bool _agarrar) { agarrar = _agarrar; }
+
+	void subirEscaleras();
+
+	void bajarEscaleras();
+
+	void agarrarEscaleras();
+
+	float corredor() override;
+	float saltador() override;
+
 };

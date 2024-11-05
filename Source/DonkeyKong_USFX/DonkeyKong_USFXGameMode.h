@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Plataforma.h"
+#include "IJugador.h"
 #include "DonkeyKong_USFXGameMode.generated.h"
 
 class AMuro;
@@ -22,6 +24,18 @@ protected:
 private:
 	UPROPERTY()
 	class AMono* mono;
+
+private:
+	//El Actor Constructor
+	UPROPERTY(VisibleAnywhere, Category = "GameModeBase")
+	class ABuilderTipoA* Constructor;
+	UPROPERTY(VisibleAnywhere, Category = "GameModeBase")
+	class ABuilderTipoB* Constructor2;
+
+
+	//El Actor Ingeniero
+	UPROPERTY(VisibleAnywhere, Category = "GameModeBase")
+	class AArquitecto* Ingeniero;
 
 public:
 	virtual void Tick(float DeltaTime) override;
@@ -54,7 +68,6 @@ protected:
 	float Timer;
 
 	void GenerarParedesAleatorias();
-	void ConstruccionMuros();
 
 	int IndiceAleatorio;
 
@@ -62,6 +75,18 @@ protected:
 	FVector UbicacionAleatoria;
 	int PlataformaAleatoria;
 	int CantidadMuros;
+
+
+
+	float segundos;
+	AActor* Escenario;
+
+
+	//para los enemigos
+	TMap<int, APlataforma*> PosicionMapa;
+
+	//para el decorador
+	IIJugador* Personaje;
 };
 
 

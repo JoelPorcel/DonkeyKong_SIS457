@@ -33,8 +33,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class USphereComponent* BarrilColision;
 
-	UPROPERTY(EditAnywhere, Category = "Movimiento")
-	float VelocidadMovimiento;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UProjectileMovementComponent* BarrilMovement;
 
 	UPROPERTY(EditAnywhere, Category = "Movimiento")
 	float LimiteMinY;
@@ -57,4 +57,6 @@ public:
 	void destruirBarril();
 
 	FTimerHandle Timer;
+
+	float RotacionRate;
 };

@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Mono.generated.h"
 
-class AProyectil;
+class ABarril;
 
 UCLASS()
 class DONKEYKONG_USFX_API AMono : public AActor
@@ -25,14 +25,14 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
-	TSubclassOf<AProyectil> ProjectileClass;
+	TSubclassOf<ABarril> ProjectileClass;
+
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* monoMesh;
 
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* monoMesh;
 
 	void SpawnProyectil();
 	float intervalo;

@@ -22,6 +22,7 @@ void EmptyLinkFunctionForGeneratedCodeBarril() {}
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UProjectileMovementComponent_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ABarril::execOnOverlapBegin)
 	{
@@ -145,9 +146,9 @@ void EmptyLinkFunctionForGeneratedCodeBarril() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_BarrilColision;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_VelocidadMovimiento_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BarrilMovement_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_VelocidadMovimiento;
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_BarrilMovement;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_LimiteMinY_MetaData[];
 #endif
@@ -196,12 +197,13 @@ void EmptyLinkFunctionForGeneratedCodeBarril() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABarril_Statics::NewProp_BarrilColision = { "BarrilColision", nullptr, (EPropertyFlags)0x00100000000a000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarril, BarrilColision), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ABarril_Statics::NewProp_BarrilColision_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarril_Statics::NewProp_BarrilColision_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ABarril_Statics::NewProp_VelocidadMovimiento_MetaData[] = {
-		{ "Category", "Movimiento" },
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ABarril_Statics::NewProp_BarrilMovement_MetaData[] = {
+		{ "Category", "Barril" },
+		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Barril.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ABarril_Statics::NewProp_VelocidadMovimiento = { "VelocidadMovimiento", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarril, VelocidadMovimiento), METADATA_PARAMS(Z_Construct_UClass_ABarril_Statics::NewProp_VelocidadMovimiento_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarril_Statics::NewProp_VelocidadMovimiento_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABarril_Statics::NewProp_BarrilMovement = { "BarrilMovement", nullptr, (EPropertyFlags)0x00100000000a000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ABarril, BarrilMovement), Z_Construct_UClass_UProjectileMovementComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ABarril_Statics::NewProp_BarrilMovement_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ABarril_Statics::NewProp_BarrilMovement_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ABarril_Statics::NewProp_LimiteMinY_MetaData[] = {
 		{ "Category", "Movimiento" },
@@ -226,7 +228,7 @@ void EmptyLinkFunctionForGeneratedCodeBarril() {}
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ABarril_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABarril_Statics::NewProp_BarrilMesh,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABarril_Statics::NewProp_BarrilColision,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABarril_Statics::NewProp_VelocidadMovimiento,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABarril_Statics::NewProp_BarrilMovement,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABarril_Statics::NewProp_LimiteMinY,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABarril_Statics::NewProp_LimiteMaxY,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABarril_Statics::NewProp_CoordenadaFijaX,
@@ -258,7 +260,7 @@ void EmptyLinkFunctionForGeneratedCodeBarril() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ABarril, 1539983980);
+	IMPLEMENT_CLASS(ABarril, 1068932965);
 	template<> DONKEYKONG_USFX_API UClass* StaticClass<ABarril>()
 	{
 		return ABarril::StaticClass();

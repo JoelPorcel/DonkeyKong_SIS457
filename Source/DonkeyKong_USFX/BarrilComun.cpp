@@ -9,7 +9,6 @@ ABarrilComun::ABarrilComun()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	BarrilMesh->SetMaterial(0, LoadObject<UMaterial>(nullptr, TEXT("Material'/Game/StarterContent/Materials/M_Wood_Walnut.M_Wood_Walnut'")));
 }
 
 // Called when the game starts or when spawned

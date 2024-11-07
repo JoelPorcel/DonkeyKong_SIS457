@@ -30,6 +30,7 @@ public:
 
 
 	void Initialize(const FVector& Direction);
+	void locationProyectil(FVector locacion, FRotator rotacion, FVector direccion);
 
 protected:
 	// Called when the game starts or when spawned

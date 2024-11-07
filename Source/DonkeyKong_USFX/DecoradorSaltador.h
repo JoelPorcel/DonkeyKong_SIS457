@@ -23,7 +23,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void setJugador(APawn* jugador) override;
-	float corredor() override { return 2; };
-	float saltador() override;
+	void setCorrer(float _correr) override;
+	void setSaltar(float _salto) override;
+	float getCorrer() override;
+	float getSaltar() override;
 };

@@ -3,28 +3,30 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Decorador.h"
-#include "DecoradorCorredor.generated.h"
+#include "GameFramework/Actor.h"
+#include "IProyectil.h"
+#include "AdaptadorProyectil.generated.h"
 
 UCLASS()
-class DONKEYKONG_USFX_API ADecoradorCorredor : public ADecorador
+class DONKEYKONG_USFX_API AAdaptadorProyectil : public AActor, public IIProyectil
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ADecoradorCorredor();
+	AAdaptadorProyectil();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void setCorrer(float _correr) override;
-	void setSaltar(float _salto) override;
-	float getCorrer() override;
-	float getSaltar() override;
+	void LanzarProyectil() override;
+
+private:
+	class AProyectil* Proyectil;
+	class ADonkeyKong_USFXCharacter* Mario;
+
 };

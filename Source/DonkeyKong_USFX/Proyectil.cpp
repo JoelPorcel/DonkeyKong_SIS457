@@ -52,11 +52,18 @@ AProyectil::AProyectil()
 
 void AProyectil::Initialize(const FVector& Direction)
 {
-	if (ProjectileMovement && ProjectileMovement != nullptr)
+	if (ProjectileMovement)
 	{
 		ProjectileMovement->Velocity = Direction * ProjectileMovement->InitialSpeed;
 	}
 }
+
+void AProyectil::locationProyectil(FVector locacion, FRotator _rotacion, FVector direccion)
+{
+	AProyectil* SpawnedProjectile1 = GetWorld()->SpawnActor<AProyectil>(AProyectil::StaticClass(), locacion, _rotacion);
+	SpawnedProjectile1->Initialize(direccion);
+}
+
 
 // Called when the game starts or when spawned
 void AProyectil::BeginPlay()

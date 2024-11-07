@@ -30,6 +30,8 @@
 #include "DecoradorCorredor.h"
 #include "DecoradorSaltador.h"
 
+#include "AdaptadorProyectil.h"
+
 ADonkeyKong_USFXGameMode::ADonkeyKong_USFXGameMode()
 {
 	// set default pawn class to our Blueprinted character
@@ -86,12 +88,19 @@ void ADonkeyKong_USFXGameMode::BeginPlay()
 	// 
 	// 
 	APawn* Player1 = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
-	ADecoradorCorredor* saltadorD = GetWorld()->SpawnActor<ADecoradorCorredor>(ADecoradorCorredor::StaticClass());
-	saltadorD->setJugador(Player1);
-	saltadorD->corredor();
-	ADecoradorSaltador* saltadorA = GetWorld()->SpawnActor<ADecoradorSaltador>(ADecoradorSaltador::StaticClass());
-	saltadorA->setJugador(saltadorD);
-	saltadorA->saltador();
+	ADecoradorCorredor* corredor = GetWorld()->SpawnActor<ADecoradorCorredor>(ADecoradorCorredor::StaticClass());
+	ADecoradorSaltador* saltador = GetWorld()->SpawnActor<ADecoradorSaltador>(ADecoradorSaltador::StaticClass());
+	corredor->setJugador(Player1);
+	Personaje = corredor;
+	Personaje->setCorrer(1500);
+	saltador->setJugador(corredor);
+	Personaje = saltador;
+	Personaje->setSaltar(300);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Personaje decorado con saltar en el gamemode,  %f"), Personaje->getSaltar()));
+
+	AAdaptadorProyectil* adaptador = GetWorld()->SpawnActor<AAdaptadorProyectil>(AAdaptadorProyectil::StaticClass());
+	ADonkeyKong_USFXCharacter* Player2 = Cast<ADonkeyKong_USFXCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	Player2->setAdaptar(adaptador);
 }
 
 void ADonkeyKong_USFXGameMode::Tick(float DeltaTime)

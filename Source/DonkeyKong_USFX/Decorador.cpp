@@ -3,6 +3,7 @@
 
 #include "Decorador.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "DonkeyKong_USFXCharacter.h"
 
 // Sets default values
 ADecorador::ADecorador()
@@ -31,15 +32,24 @@ void ADecorador::setJugador(APawn* jugador)
 	Jugador = Cast<IIJugador>(jugador);
 }
 
-float ADecorador::corredor()
+void ADecorador::setCorrer(float _correr)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("corriendoooooooooooooooooooooo")));
-	return Jugador->corredor();
+	Jugador->setCorrer(_correr);
 }
 
-float ADecorador::saltador()
+void ADecorador::setSaltar(float _salto)
 {
-	return Jugador->saltador();
+	Jugador->setSaltar(_salto);
+}
+
+float ADecorador::getCorrer()
+{
+	return Jugador->getCorrer();
+}
+
+float ADecorador::getSaltar()
+{
+	return Jugador->getSaltar();
 }
 
 

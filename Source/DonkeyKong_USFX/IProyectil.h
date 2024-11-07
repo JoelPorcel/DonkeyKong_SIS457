@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "IJugador.generated.h"
+#include "IProyectil.generated.h"
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
-class UIJugador : public UInterface
+class UIProyectil : public UInterface
 {
 	GENERATED_BODY()
 };
@@ -16,15 +16,12 @@ class UIJugador : public UInterface
 /**
  * 
  */
-class DONKEYKONG_USFX_API IIJugador
+class DONKEYKONG_USFX_API IIProyectil
 {
 	GENERATED_BODY()
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-	virtual void setCorrer(float _correr) = 0;
-	virtual void setSaltar(float _saltar) = 0;
-	virtual float getCorrer() = 0;
-	virtual float getSaltar() = 0;
+	virtual void LanzarProyectil() = 0;
 };

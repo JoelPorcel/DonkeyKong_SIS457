@@ -21,13 +21,18 @@ protected:
 	virtual void BeginPlay() override;
 
 	IIJugador* Jugador;
+	float correr;
+	float salto;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void setJugador(APawn* jugador);
-	float corredor() override;
-	float saltador() override;
 
+
+	void setCorrer(float _correr) override;
+	void setSaltar(float _salto) override;
+	float getCorrer() override;
+	float getSaltar() override;
 };

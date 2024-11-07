@@ -39,9 +39,9 @@ ADonkeyKong_USFXCharacter::ADonkeyKong_USFXCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->GravityScale = 2.f;
 	GetCharacterMovement()->AirControl = 0.80f;
-	GetCharacterMovement()->JumpZVelocity = 600.f;
+	GetCharacterMovement()->JumpZVelocity = 600;
 	GetCharacterMovement()->GroundFriction = 3.f;
-	GetCharacterMovement()->MaxWalkSpeed = 600.f;
+	GetCharacterMovement()->MaxWalkSpeed = 600;
 	GetCharacterMovement()->MaxFlySpeed = 1200.f;
 
 	//salto alto
@@ -108,16 +108,41 @@ void ADonkeyKong_USFXCharacter::agarrarEscaleras()
 	}
 }
 
-float ADonkeyKong_USFXCharacter::corredor()
+void ADonkeyKong_USFXCharacter::setCorrer(float _correr)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Magenta, FString::Printf(TEXT("Correr++++++++++++++++++++++++++++++++")));
+	GetCharacterMovement()->MaxWalkSpeed = _correr;
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Emerald, FString::Printf(TEXT("Velocidad actual en characterrrrr: %.1f"), GetCharacterMovement()->MaxWalkSpeed));
+}
+
+void ADonkeyKong_USFXCharacter::setSaltar(float _salto)
+{
+	GetCharacterMovement()->JumpZVelocity = _salto;
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Emerald, FString::Printf(TEXT("Salto actual en characcterrrrrr: %.1f"), GetCharacterMovement()->JumpZVelocity));
+}
+
+float ADonkeyKong_USFXCharacter::getCorrer()
+{
 	return GetCharacterMovement()->MaxWalkSpeed;
 }
 
-float ADonkeyKong_USFXCharacter::saltador()
+float ADonkeyKong_USFXCharacter::getSaltar()
 {
 	return GetCharacterMovement()->JumpZVelocity;
 }
+
+void ADonkeyKong_USFXCharacter::setAdaptar(AActor* _Adapter)
+{
+	Proyectil = Cast<IIProyectil>(_Adapter);
+}
+
+void ADonkeyKong_USFXCharacter::LanzarProyectil()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Red, TEXT("Lanzar proyectil"));
+	if (Proyectil) {
+		Proyectil->LanzarProyectil();
+	}
+}
+
 
 void ADonkeyKong_USFXCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
@@ -131,7 +156,7 @@ void ADonkeyKong_USFXCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ADonkeyKong_USFXCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ADonkeyKong_USFXCharacter::TouchStopped);
-	PlayerInputComponent->BindAction("SpawnEsfera", IE_Pressed, this, &ADonkeyKong_USFXCharacter::SpawnEsfera);
+	PlayerInputComponent->BindAction("SpawnEsfera", IE_Pressed, this, &ADonkeyKong_USFXCharacter::LanzarProyectil);
 }
 
 void ADonkeyKong_USFXCharacter::MoveRight(float Value)
@@ -151,39 +176,6 @@ void ADonkeyKong_USFXCharacter::TouchStopped(const ETouchIndex::Type FingerIndex
 	StopJumping();
 }
 
-void ADonkeyKong_USFXCharacter::SpawnEsfera()
-{
-	ProjectileClass = AProyectil::StaticClass();
-	if (ProjectileClass)
-	{
-		// Obtener la ubicaci?n y rotaci?n del jugador
-		FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100; // Ajustar la distancia de spawn
-		FRotator SpawnRotation = GetActorRotation();
-
-		// Par?metros de spawn
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.Owner = this;
-		SpawnParams.Instigator = GetInstigator();
-		// Spawnear el proyectil
-		FVector ForwardDirection = GetActorForwardVector();
-		if (ForwardDirection.Y >= 0.99) {
-			//SpawnLocation.Y += 200.0f;
-			AProyectil* SpawnedProjectile1 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
-			SpawnedProjectile1->Initialize(ForwardDirection);
-			//SpawnLocation.Y -= 100.0f;
-			//AProyectil* SpawnedProjectile2 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
-			//SpawnedProjectile2->Initialize(ForwardDirection);
-		}
-		else if (ForwardDirection.Y <= -0.99) {
-			//pawnLocation.Y -= 200.0f;
-			AProyectil* SpawnedProjectile2 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
-			SpawnedProjectile2->Initialize(ForwardDirection);
-			//SpawnLocation.Y += 100.0f;
-			//AProyectil* SpawnedProjectile2 = GetWorld()->SpawnActor<AProyectil>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
-			//SpawnedProjectile2->Initialize(ForwardDirection);
-		}
-	}
-}
 
 void ADonkeyKong_USFXCharacter::ControlPuntos()
 {

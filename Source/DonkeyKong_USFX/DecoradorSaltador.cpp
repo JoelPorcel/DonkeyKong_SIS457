@@ -27,18 +27,26 @@ void ADecoradorSaltador::Tick(float DeltaTime)
 
 }
 
-void ADecoradorSaltador::setJugador(APawn* jugador)
+void ADecoradorSaltador::setCorrer(float _correr)
 {
-	Jugador = Cast<IIJugador>(jugador);
+	float correrA = getCorrer();
+	Jugador->setCorrer(correrA + _correr );
 }
 
-float ADecoradorSaltador::saltador()
+void ADecoradorSaltador::setSaltar(float _salto)
 {
-	ADonkeyKong_USFXCharacter* personaje = Cast<ADonkeyKong_USFXCharacter>(Jugador);
-	if (personaje)
-	{
-		return personaje->GetCharacterMovement()->JumpZVelocity = Super::saltador() + 2000; // Modifica directamente
-	}
-	return 0;
+	float saltar = getSaltar();
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Velocidad Actual en el decorador       : %f"), saltar));
+	Jugador->setSaltar(saltar + _salto);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Velocidad Actual en el decorador       : %f"), Jugador->getSaltar()));
 }
 
+float ADecoradorSaltador::getCorrer()
+{
+	return Super::getCorrer();
+}
+
+float ADecoradorSaltador::getSaltar()
+{
+	return Super::getSaltar();
+}

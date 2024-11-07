@@ -27,13 +27,25 @@ void ADecoradorCorredor::Tick(float DeltaTime)
 
 }
 
-float ADecoradorCorredor::corredor()
+void ADecoradorCorredor::setCorrer(float _correr)
 {
-	ADonkeyKong_USFXCharacter* personaje = Cast<ADonkeyKong_USFXCharacter>(Jugador);
-	if (personaje)
-	{
-		return personaje->GetCharacterMovement()->MaxWalkSpeed = Super::corredor()+2000; // Modifica directamente
-	}
-	return 0;
+	float velocidad = getCorrer();
+	Jugador->setCorrer(velocidad + _correr);
+}
+
+void ADecoradorCorredor::setSaltar(float _salto)
+{
+	float saltoA = getSaltar();
+	Jugador->setSaltar(saltoA + _salto);	
+}
+
+float ADecoradorCorredor::getCorrer()
+{
+	return Super::getCorrer();
+}
+
+float ADecoradorCorredor::getSaltar()
+{
+	return Super::getSaltar();
 }
 

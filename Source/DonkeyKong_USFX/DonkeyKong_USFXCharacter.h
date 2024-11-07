@@ -3,13 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Proyectil.h"
 #include "GameFramework/Character.h"
 #include "IJugador.h"
+#include "IProyectil.h"
 #include "DonkeyKong_USFXCharacter.generated.h"
 
 UCLASS(config = Game)
-class ADonkeyKong_USFXCharacter : public ACharacter, public IIJugador
+class ADonkeyKong_USFXCharacter : public ACharacter, public IIJugador, public IIProyectil
 {
 	GENERATED_BODY()
 
@@ -38,8 +38,8 @@ class ADonkeyKong_USFXCharacter : public ACharacter, public IIJugador
 	FVector posicionActual;
 
 	//objeto proyectil
-	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
-	TSubclassOf<AProyectil> ProjectileClass;
+	//UPROPERTY(EditDefaultsOnly, Category = "Spawning")
+	//TSubclassOf<AProyectil> ProjectileClass; util cuando se hace el spawn en otras clases 
 
 protected:
 
@@ -55,7 +55,6 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	void SpawnEsfera();
 	// End of APawn interface
 	int vidas;
 	float puntaje;
@@ -95,7 +94,14 @@ public:
 
 	void agarrarEscaleras();
 
-	float corredor() override;
-	float saltador() override;
+	//para decorador
+	void setCorrer(float _correr) override;
+	void setSaltar(float _salto) override;
+	float getCorrer() override;
+	float getSaltar() override;
 
+	//para adapter
+	IIProyectil* Proyectil;
+	void setAdaptar(AActor* _Adapter);
+	void LanzarProyectil() override;
 };
